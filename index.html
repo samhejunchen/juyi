@@ -274,8 +274,8 @@
   /* =========== HOME: Product Core =========== */
   .product-arch {
     background: linear-gradient(135deg, #0a2942, #0a3d5e);
-    border-radius: 20px; padding: 48px; margin-bottom: 40px;
-    position: relative; overflow: hidden;
+    border-radius: 20px; padding: 58px 48px 108px; margin-bottom: 40px;
+    position: relative; overflow: visible;
   }
   .product-arch::before {
     content: ''; position: absolute; inset: 0;
@@ -331,13 +331,13 @@
   .arch-box {
     background: rgba(255,255,255,0.06); border: 1px solid rgba(0,180,216,0.3);
     border-radius: 14px; padding: 24px; text-align: center;
-    transition: var(--transition); cursor: pointer;
+    transition: all 0.3s ease; cursor: pointer;
   }
   .arch-box:hover {
-    background: rgba(0,180,216,0.3) !important;
-    border-color: var(--cyan-main) !important;
-    transform: translateY(-8px) scale(1.02) !important;
-    box-shadow: 0 16px 40px rgba(0,180,216,0.5), 0 0 0 3px var(--cyan-main) !important;
+    background: #ff0000 !important;
+    border: 3px solid #ffff00 !important;
+    transform: translateY(-20px) scale(1.05) !important;
+    box-shadow: 0 25px 50px rgba(0,180,216,0.6), 0 0 30px rgba(0,180,216,0.4) !important;
   }
   .arch-box:hover .arch-box-icon {
     background: linear-gradient(135deg, var(--cyan-main), var(--cyan-dark)) !important;
