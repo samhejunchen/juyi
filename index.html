@@ -2170,54 +2170,91 @@ let slideInterval;
 function goToSlide(n) {
   const slides = document.querySelectorAll('.banner-slide');
   const dots = document.querySelectorAll('.banner-dot');
+  if (slides.length === 0 || dots.length === 0) return;
+  
+  // Remove all active classes
   slides.forEach(s => s.classList.remove('active'));
   dots.forEach(d => d.classList.remove('active'));
-  currentSlide = (n + slides.length) % slides.length;
+  
+  // Calculate new slide index
+  currentSlide = ((n % slides.length) + slides.length) % slides.length;
+  
+  // Add active class to current slide and dot
   slides[currentSlide].classList.add('active');
   dots[currentSlide].classList.add('active');
 }
 
-function nextSlide() { goToSlide(currentSlide + 1); }
+function nextSlide() { 
+  goToSlide(currentSlide + 1); 
+}
 
 function startSlider() {
+  // Clear any existing interval first
+  if (slideInterval) clearInterval(slideInterval);
   slideInterval = setInterval(nextSlide, 5000);
 }
 
-document.getElementById('bannerSlider').addEventListener('mouseenter', () => clearInterval(slideInterval));
-document.getElementById('bannerSlider').addEventListener('mouseleave', () => {
-  clearInterval(slideInterval);
+// Initialize banner slider when DOM is ready
+document.addEventListener('DOMContentLoaded', function() {
+  // Remove any pre-set active classes from slides to ensure JS control
+  document.querySelectorAll('.banner-slide').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.banner-dot').forEach(d => d.classList.remove('active'));
+  
+  // Set initial slide
+  goToSlide(0);
+  
+  // Start auto-play
   startSlider();
+  
+  // Mouse enter/leave events for pausing
+  const bannerSlider = document.getElementById('bannerSlider');
+  if (bannerSlider) {
+    bannerSlider.addEventListener('mouseenter', () => {
+      if (slideInterval) clearInterval(slideInterval);
+    });
+    bannerSlider.addEventListener('mouseleave', () => {
+      startSlider();
+    });
+  }
 });
-
-startSlider();
 
 // =========== Hamburger ===========
 function toggleMobile() {
   const menu = document.getElementById('mobileMenu');
-  menu.classList.toggle('open');
+  if (menu) menu.classList.toggle('open');
 }
 function closeMobile() {
-  document.getElementById('mobileMenu').classList.remove('open');
+  const menu = document.getElementById('mobileMenu');
+  if (menu) menu.classList.remove('open');
 }
 
 // =========== Scroll to top button ===========
 window.addEventListener('scroll', () => {
   const btn = document.getElementById('scrollTop');
-  btn.classList.toggle('visible', window.scrollY > 400);
+  if (btn) {
+    btn.classList.toggle('visible', window.scrollY > 400);
+  }
 });
 
 // =========== Form Submit ===========
 function submitForm(e) {
-  e.preventDefault();
+  if (e) e.preventDefault();
   const form = document.getElementById('bookingForm');
   const msg = document.getElementById('successMsg');
-  form.querySelectorAll('input,select,textarea,button').forEach(el => el.disabled = true);
-  msg.style.display = 'block';
-  msg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  if (form) {
+    form.querySelectorAll('input,select,textarea,button').forEach(el => el.disabled = true);
+  }
+  if (msg) {
+    msg.style.display = 'block';
+    msg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
 }
 
 // =========== Navbar active on init ===========
-document.getElementById('nav-home').classList.add('active');
+document.addEventListener('DOMContentLoaded', function() {
+  const navHome = document.getElementById('nav-home');
+  if (navHome) navHome.classList.add('active');
+});
 </script>
 
 
