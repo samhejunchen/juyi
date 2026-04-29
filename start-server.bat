@@ -1,7 +1,18 @@
 @echo off
-echo Starting HTTP server on port 8080...
-echo Open http://127.0.0.1:8080 in your browser
+echo ==========================================
+echo   EasyLiving AI Website Local Server
+echo ==========================================
 echo.
-cd /d D:\juyiweb
-python -m http.server 8080
+
+where node >nul 2>nul
+if %errorlevel% == 0 (
+    echo Starting Node.js server...
+    node server.js
+) else (
+    echo Node.js not found. Trying Python...
+    python -m http.server 8080
+)
+
+echo.
+echo Server stopped.
 pause

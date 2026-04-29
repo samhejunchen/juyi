@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hover Test</title>
+<style>
+  :root {
+    --cyan-main: #00B4D8;
+    --cyan-dark: #0077B6;
+    --text-dark: #2B2D42;
+  }
+  body {
+    font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    background: linear-gradient(135deg, #0a2942, #0a3d5e);
+    padding: 50px;
+    margin: 0;
+  }
+  .arch-boxes {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .arch-box {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(0,180,216,0.3);
+    border-radius: 14px;
+    padding: 24px;
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+  .arch-box:hover {
+    background: rgba(0,180,216,0.25);
+    border-color: var(--cyan-main);
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 50px rgba(0,180,216,0.5), 0 0 20px rgba(0,180,216,0.6), 0 0 40px rgba(0,180,216,0.3);
+  }
+  .arch-box-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 12px;
+    margin: 0 auto 14px;
+    background: linear-gradient(135deg, rgba(0,180,216,0.3), rgba(0,119,182,0.3));
+    border: 1px solid rgba(0,180,216,0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    transition: all 0.3s ease;
+  }
+  .arch-box:hover .arch-box-icon {
+    background: linear-gradient(135deg, var(--cyan-main), var(--cyan-dark));
+    transform: scale(1.15);
+  }
+  .arch-box-name {
+    color: var(--cyan-main);
+    font-weight: 700;
+    font-size: 15px;
+    margin-bottom: 6px;
+    transition: all 0.3s ease;
+  }
+  .arch-box:hover .arch-box-name {
+    color: white;
+  }
+  .arch-box-desc {
+    color: rgba(255,255,255,0.6);
+    font-size: 13px;
+    line-height: 1.6;
+    transition: all 0.3s ease;
+  }
+  .arch-box:hover .arch-box-desc {
+    color: rgba(255,255,255,0.9);
+  }
+  h1 {
+    color: white;
+    text-align: center;
+    margin-bottom: 40px;
+  }
+</style>
+</head>
+<body>
+  <h1>Hover Effect Test</h1>
+  <div class="arch-boxes">
+    <div class="arch-box">
+      <div class="arch-box-icon">🏠</div>
+      <div class="arch-box-name">空间智联Box</div>
+      <div class="arch-box-desc">懂你的生活管家<br>家庭/室内空间智能化</div>
+    </div>
+    <div class="arch-box">
+      <div class="arch-box-icon">🏢</div>
+      <div class="arch-box-name">社区智联Box</div>
+      <div class="arch-box-desc">守秩序的系统管家<br>社区/楼宇公共区域管理</div>
+    </div>
+    <div class="arch-box">
+      <div class="arch-box-icon">🤖</div>
+      <div class="arch-box-name">机器人交互Box</div>
+      <div class="arch-box-desc">会干活的调度总管<br>跨空间机器人集群调度</div>
+    </div>
+  </div>
+</body>
+</html>
