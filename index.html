@@ -1,0 +1,2224 @@
+<!DOCTYPE html>
+<!-- saved from url=(0022)http://127.0.0.1:8080/ -->
+<html lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>居易人工智能有限公司 | EaseLiving AI</title>
+<style>
+  /* =========== CSS Variables & Reset =========== */
+  :root {
+    --cyan-main: #00B4D8;
+    --cyan-dark: #0077B6;
+    --orange-main: #F4A261;
+    --orange-dark: #E76F51;
+    --text-dark: #2B2D42;
+    --bg-light: #F8F9FA;
+    --white: #ffffff;
+    --shadow: 0 4px 20px rgba(0,0,0,0.08);
+    --shadow-hover: 0 8px 32px rgba(0,180,216,0.18);
+    --radius: 12px;
+    --radius-sm: 8px;
+    --transition: all 0.3s ease;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; font-size: 16px; }
+  body {
+    font-family: 'PingFang SC', 'Microsoft YaHei', 'Segoe UI', sans-serif;
+    background: var(--bg-light);
+    color: var(--text-dark);
+    line-height: 1.7;
+  }
+  img { max-width: 100%; display: block; }
+  a { text-decoration: none; color: inherit; }
+  ul { list-style: none; }
+
+  /* =========== Navbar =========== */
+  #navbar {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    background: rgba(255,255,255,0.96);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(0,180,216,0.1);
+    height: 68px;
+    display: flex; align-items: center;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+  .nav-inner {
+    max-width: 1200px; width: 100%; margin: 0 auto;
+    padding: 0 24px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-logo {
+    display: flex; align-items: center; gap: 10px;
+  }
+  .nav-logo .logo-text { display: flex; flex-direction: column; line-height: 1.2; }
+  .nav-logo .logo-cn { font-size: 16px; font-weight: 700; color: var(--text-dark); }
+  .nav-logo .logo-en { font-size: 10px; color: var(--cyan-main); letter-spacing: 0.5px; }
+  .nav-links { display: flex; gap: 8px; }
+  .nav-links a {
+    padding: 8px 14px; border-radius: var(--radius-sm);
+    font-size: 14px; font-weight: 500; color: var(--text-dark);
+    transition: var(--transition);
+    cursor: pointer;
+  }
+  .nav-links a:hover, .nav-links a.active {
+    background: rgba(0,180,216,0.1);
+    color: var(--cyan-main);
+  }
+  .hamburger {
+    display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 6px;
+  }
+  .hamburger span {
+    display: block; width: 24px; height: 2px;
+    background: var(--text-dark); border-radius: 2px; transition: var(--transition);
+  }
+  .mobile-menu {
+    display: none; position: fixed; top: 68px; left: 0; right: 0;
+    background: white; z-index: 999; padding: 16px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    border-top: 1px solid rgba(0,180,216,0.1);
+  }
+  .mobile-menu a {
+    display: block; padding: 14px 16px; border-radius: var(--radius-sm);
+    font-size: 15px; font-weight: 500; color: var(--text-dark);
+    transition: var(--transition);
+  }
+  .mobile-menu a:hover { background: rgba(0,180,216,0.08); color: var(--cyan-main); }
+  .mobile-menu.open { display: block; }
+
+  /* =========== Utility =========== */
+  .section { padding: 80px 24px; }
+  .section-alt { background: white; }
+  .container { max-width: 1200px; margin: 0 auto; }
+  .section-tag {
+    display: inline-block; padding: 4px 14px; border-radius: 20px;
+    background: rgba(0,180,216,0.1); color: var(--cyan-main);
+    font-size: 13px; font-weight: 600; letter-spacing: 0.5px;
+    margin-bottom: 12px;
+  }
+  .section-title {
+    font-size: clamp(24px, 3.5vw, 38px);
+    font-weight: 800; color: var(--text-dark);
+    line-height: 1.3; margin-bottom: 16px;
+  }
+  .section-title .cyan { color: var(--cyan-main); }
+  .section-title .orange { color: var(--orange-main); }
+  .section-desc {
+    font-size: 16px; color: #6c757d;
+    max-width: 680px; margin-bottom: 40px; line-height: 1.8;
+  }
+  .text-center { text-align: center; }
+  .text-center .section-desc { margin: 0 auto 40px; }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 13px 28px; border-radius: var(--radius-sm);
+    font-size: 15px; font-weight: 600; cursor: pointer;
+    border: none; transition: var(--transition);
+    text-decoration: none;
+  }
+  .btn-orange {
+    background: var(--orange-main); color: white;
+  }
+  .btn-orange:hover { background: var(--orange-dark); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(244,162,97,0.35); }
+  .btn-cyan {
+    background: var(--cyan-main); color: white;
+  }
+  .btn-cyan:hover { background: var(--cyan-dark); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,180,216,0.3); }
+  .btn-outline-cyan {
+    background: transparent; color: var(--cyan-main);
+    border: 2px solid var(--cyan-main);
+  }
+  .btn-outline-cyan:hover { background: var(--cyan-main); color: white; }
+  .btn-outline-white {
+    background: transparent; color: white;
+    border: 2px solid rgba(255,255,255,0.7);
+  }
+  .btn-outline-white:hover { background: white; color: var(--text-dark); }
+
+  /* Cards */
+  .card {
+    background: white; border-radius: var(--radius);
+    box-shadow: var(--shadow); padding: 32px;
+    transition: var(--transition);
+  }
+  .card:hover { box-shadow: var(--shadow-hover); transform: translateY(-4px); }
+  .card-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .card-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+  .card-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+
+  /* Placeholder Image */
+  .img-placeholder {
+    width: 100%; border-radius: var(--radius);
+    background: linear-gradient(135deg, rgba(0,180,216,0.15), rgba(0,119,182,0.25));
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 12px; color: var(--cyan-dark); font-weight: 500;
+  }
+  .img-placeholder .ph-icon { font-size: 48px; opacity: 0.5; }
+  .img-placeholder .ph-text { font-size: 14px; opacity: 0.7; }
+
+  /* =========== PAGE SECTIONS =========== */
+  .page-section { display: none; }
+  .page-section.active { display: block; }
+
+  /* =========== HOME: Banner =========== */
+  #home { padding-top: 68px; }
+  .banner-slider {
+    position: relative; overflow: hidden;
+    height: 620px; min-height: 480px;
+  }
+  .banner-slide {
+    position: absolute; inset: 0;
+    display: flex; align-items: center;
+    opacity: 0; transition: opacity 0.8s ease;
+  }
+  .banner-slide.active { opacity: 1; z-index: 1; }
+  .banner-bg {
+    position: absolute; inset: 0;
+    background-size: cover; background-position: center;
+  }
+  .banner-bg::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(90deg, rgba(2,24,40,0.78) 0%, rgba(2,24,40,0.32) 60%, transparent 100%);
+  }
+  .banner-bg-1 {
+    background-image: url("./assets/images/img02.png"), linear-gradient(135deg, rgba(10,41,66,0.75) 0%, rgba(10,61,94,0.75) 40%, rgba(8,90,122,0.75) 100%);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  .banner-bg-2 {
+    background-image: url("./assets/images/img03.png"), linear-gradient(135deg, rgba(13,33,55,0.75) 0%, rgba(13,58,86,0.75) 40%, rgba(12,82,114,0.75) 100%);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  .banner-bg-3 {
+    background-image: url("./assets/images/img04.png"), linear-gradient(135deg, rgba(15,31,53,0.75) 0%, rgba(16,45,79,0.75) 40%, rgba(12,63,104,0.75) 100%);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  .banner-visual {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: flex-end;
+    padding-right: 60px; z-index: 0;
+  }
+  .banner-visual-inner {
+    width: 380px; height: 380px; opacity: 0.18;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .banner-content {
+    position: relative; z-index: 2;
+    max-width: 1200px; margin: 0 auto; padding: 0 48px;
+    width: 100%;
+  }
+  .banner-label {
+    display: inline-block; padding: 5px 14px; border-radius: 20px;
+    background: rgba(0,180,216,0.25); border: 1px solid rgba(0,180,216,0.4);
+    color: var(--cyan-main); font-size: 13px; font-weight: 600;
+    margin-bottom: 20px;
+  }
+  .banner-title {
+    font-size: clamp(28px, 4.5vw, 54px);
+    font-weight: 900; color: white; line-height: 1.2;
+    margin-bottom: 18px; max-width: 600px;
+  }
+  .banner-sub {
+    font-size: clamp(14px, 1.8vw, 18px);
+    color: rgba(255,255,255,0.8); margin-bottom: 36px; max-width: 480px;
+  }
+  .banner-dots {
+    position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%);
+    display: flex; gap: 10px; z-index: 3;
+  }
+  .banner-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: rgba(255,255,255,0.4); cursor: pointer; transition: var(--transition);
+  }
+  .banner-dot.active { background: var(--cyan-main); width: 24px; border-radius: 4px; }
+
+  /* Banner decoration */
+  .banner-deco {
+    position: absolute; right: 0; top: 0; bottom: 0; width: 45%;
+    z-index: 1; overflow: hidden;
+  }
+  .banner-deco-grid {
+    position: absolute; inset: 0; opacity: 0.06;
+    background-image: linear-gradient(rgba(0,180,216,1) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(0,180,216,1) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+  .banner-deco-shape {
+    position: absolute; top: 50%; right: 80px;
+    transform: translateY(-50%);
+    width: 300px; height: 300px;
+    border: 2px solid rgba(0,180,216,0.2);
+    border-radius: 30px; rotate: 15deg;
+  }
+  .banner-deco-shape2 {
+    position: absolute; top: 50%; right: 120px;
+    transform: translateY(-50%);
+    width: 220px; height: 220px;
+    border: 2px solid rgba(244,162,97,0.15);
+    border-radius: 20px; rotate: -5deg;
+  }
+
+  /* =========== HOME: Positioning =========== */
+  .positioning-wrap {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;
+  }
+  .positioning-img { height: 360px; }
+  .positioning-text .section-title { margin-bottom: 20px; }
+
+  /* =========== HOME: Product Core =========== */
+  .product-arch {
+    background: linear-gradient(135deg, #0a2942, #0a3d5e);
+    border-radius: 20px; padding: 48px; margin-bottom: 40px;
+    position: relative; overflow: hidden;
+  }
+  .product-arch::before {
+    content: ''; position: absolute; inset: 0;
+    background-image: linear-gradient(rgba(0,180,216,0.08) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(0,180,216,0.08) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+  .arch-title {
+    text-align: center; color: white; font-size: 20px; font-weight: 700;
+    margin-bottom: 40px; position: relative;
+  }
+  .arch-title span { color: var(--cyan-main); }
+  .arch-cloud {
+    display: flex; justify-content: center; margin-bottom: 28px;
+    position: relative;
+  }
+  .arch-cloud-box {
+    background: linear-gradient(135deg, var(--cyan-main), var(--cyan-dark));
+    border-radius: 16px; padding: 20px 40px;
+    color: white; font-weight: 700; font-size: 16px;
+    box-shadow: 0 8px 32px rgba(0,180,216,0.4);
+    text-align: center;
+  }
+  .arch-cloud-box .arch-box-sub { font-size: 12px; opacity: 0.85; margin-top: 4px; font-weight: 400; }
+  .arch-connector {
+    display: flex; justify-content: center; margin-bottom: 16px;
+    position: relative;
+  }
+  .arch-connector::before {
+    content: ''; position: absolute;
+    top: 50%; left: 50%; transform: translateX(-50%);
+    width: 70%; height: 2px; background: rgba(0,180,216,0.3);
+    z-index: 0;
+  }
+  .arch-dots {
+    display: flex; justify-content: space-around; width: 70%;
+    position: relative; z-index: 1;
+  }
+  .arch-dot-line {
+    display: flex; flex-direction: column; align-items: center;
+    gap: 0;
+  }
+  .arch-dot-circle {
+    width: 12px; height: 12px; border-radius: 50%;
+    background: var(--cyan-main); box-shadow: 0 0 0 3px rgba(0,180,216,0.2);
+  }
+  .arch-line-v {
+    width: 2px; height: 28px; background: rgba(0,180,216,0.3);
+  }
+  .arch-boxes {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  }
+  .arch-box {
+    background: rgba(255,255,255,0.06); border: 1px solid rgba(0,180,216,0.3);
+    border-radius: 14px; padding: 24px; text-align: center;
+    transition: var(--transition); cursor: pointer;
+  }
+  .arch-box:hover {
+    background: rgba(0,180,216,0.3) !important;
+    border-color: var(--cyan-main) !important;
+    transform: translateY(-8px) scale(1.02) !important;
+    box-shadow: 0 16px 40px rgba(0,180,216,0.5), 0 0 0 3px var(--cyan-main) !important;
+  }
+  .arch-box:hover .arch-box-icon {
+    background: linear-gradient(135deg, var(--cyan-main), var(--cyan-dark)) !important;
+    transform: scale(1.15) !important;
+  }
+  .arch-box:hover .arch-box-name { color: white !important; }
+  .arch-box:hover .arch-box-desc { color: rgba(255,255,255,0.9) !important; }
+  .arch-box-icon {
+    width: 52px; height: 52px; border-radius: 12px; margin: 0 auto 14px;
+    background: linear-gradient(135deg, rgba(0,180,216,0.3), rgba(0,119,182,0.3));
+    border: 1px solid rgba(0,180,216,0.4);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px; transition: var(--transition);
+  }
+  .arch-box-name { color: var(--cyan-main); font-weight: 700; font-size: 15px; margin-bottom: 6px; transition: var(--transition); }
+  .arch-box-desc { color: rgba(255,255,255,0.6); font-size: 13px; line-height: 1.6; transition: var(--transition); }
+
+  /* =========== HOME: Forward Looking =========== */
+  .fwd-wrap {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;
+  }
+  .fwd-highlight {
+    background: linear-gradient(135deg, rgba(0,180,216,0.08), rgba(0,119,182,0.05));
+    border-left: 4px solid var(--cyan-main); border-radius: 0 12px 12px 0;
+    padding: 20px 24px; margin: 20px 0;
+    font-size: 15px; color: var(--text-dark); line-height: 1.8;
+  }
+
+  /* =========== HOME: Experience =========== */
+  .exp-wrap {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center;
+  }
+  .exp-img { height: 340px; }
+
+  /* =========== PRODUCT PAGE =========== */
+  #products { padding-top: 68px; }
+  .product-hero {
+    padding: 80px 24px 60px;
+    background: linear-gradient(135deg, #0a2942 0%, #0a3d5e 60%, #085a7a 100%);
+    text-align: center; position: relative; overflow: hidden;
+  }
+  .product-hero::before {
+    content: ''; position: absolute; inset: 0;
+    background-image: url("./assets/images/img01.png"), linear-gradient(rgba(0,180,216,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(0,180,216,0.07) 1px, transparent 1px);
+    background-size: cover, 40px 40px, 40px 40px;
+    background-position: center;
+    background-repeat: no-repeat, repeat, repeat;
+  }
+  .product-hero .section-title { color: white; }
+  .product-hero .section-title .cyan { color: var(--cyan-main); }
+  .product-hero .section-desc { color: rgba(255,255,255,0.75); margin: 0 auto; }
+
+  .product-boxes-section { padding: 60px 24px; }
+  .product-box-card {
+    background: white; border-radius: 20px; box-shadow: var(--shadow);
+    overflow: hidden; transition: var(--transition);
+  }
+  .product-box-card:hover { box-shadow: var(--shadow-hover); transform: translateY(-4px); }
+  .product-box-header {
+    padding: 32px 36px; background: linear-gradient(135deg, #0a2942, #0a3d5e);
+    display: flex; align-items: center; gap: 20px;
+  }
+  .product-box-icon {
+    width: 64px; height: 64px; border-radius: 16px;
+    background: linear-gradient(135deg, var(--cyan-main), var(--cyan-dark));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 30px; flex-shrink: 0;
+    box-shadow: 0 4px 16px rgba(0,180,216,0.4);
+  }
+  .product-box-header-text {}
+  .product-box-name { color: var(--cyan-main); font-size: 20px; font-weight: 800; margin-bottom: 4px; }
+  .product-box-tagline { color: rgba(255,255,255,0.75); font-size: 14px; }
+  .product-box-scene { color: rgba(255,255,255,0.5); font-size: 12px; margin-top: 4px; }
+  .product-box-body { padding: 32px 36px; }
+  .product-box-mission { font-size: 15px; color: var(--text-dark); margin-bottom: 24px; line-height: 1.8; }
+  .product-box-caps { margin-bottom: 20px; }
+  .product-box-caps-title { font-size: 13px; font-weight: 600; color: #888; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px; }
+  .product-box-cap-item {
+    display: flex; align-items: center; gap: 10px;
+    padding: 8px 0; border-bottom: 1px solid rgba(0,0,0,0.04);
+    font-size: 14px; color: var(--text-dark);
+  }
+  .product-box-cap-item::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--cyan-main); flex-shrink: 0; }
+  .product-box-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 16px; }
+  .tag {
+    padding: 5px 12px; border-radius: 20px; font-size: 12px; font-weight: 600;
+    background: rgba(0,180,216,0.1); color: var(--cyan-dark);
+    border: 1px solid rgba(0,180,216,0.2);
+  }
+
+  /* Tech Cards */
+  .tech-card { border-top: 3px solid var(--cyan-main); }
+  .tech-card-icon { font-size: 36px; margin-bottom: 16px; }
+  .tech-card-title { font-size: 17px; font-weight: 700; color: var(--cyan-main); margin-bottom: 10px; }
+  .tech-card-desc { font-size: 14px; color: #666; line-height: 1.8; }
+
+  /* =========== COMMUNITY PAGE =========== */
+  #community { padding-top: 68px; }
+  .community-hero {
+    padding: 80px 24px 60px;
+    background: linear-gradient(135deg, #1a0a2e 0%, #2d1b4e 60%, #1a0a3a 100%);
+    text-align: center; position: relative; overflow: hidden;
+  }
+  .community-hero::before {
+    content: ''; position: absolute; inset: 0;
+    background-image: 
+      linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.5)),
+      url("./assets/images/community_banner.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  .community-hero .section-title { 
+    color: white; 
+    text-shadow: 2px 4px 12px rgba(0,0,0,0.6);
+  }
+  .community-hero .section-desc { color: rgba(255,255,255,0.75); margin: 0 auto; }
+
+  .scene-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; }
+  .scene-card {
+    background: white; border-radius: 20px; overflow: hidden;
+    box-shadow: var(--shadow); transition: var(--transition);
+  }
+  .scene-card:hover { transform: translateY(-6px); box-shadow: 0 16px 48px rgba(0,0,0,0.12); }
+  .scene-card-header {
+    padding: 24px 28px; background: linear-gradient(135deg, #0a2942, #0a3d5e);
+    display: flex; align-items: center; gap: 16px;
+  }
+  .scene-time {
+    background: rgba(0,180,216,0.2); border: 1px solid rgba(0,180,216,0.4);
+    border-radius: 8px; padding: 6px 12px;
+    color: var(--cyan-main); font-size: 13px; font-weight: 700;
+    white-space: nowrap;
+  }
+  .scene-card-title { color: white; font-size: 18px; font-weight: 700; }
+  .scene-card-body { padding: 24px 28px; }
+  .scene-desc { font-size: 15px; color: var(--text-dark); margin-bottom: 20px; line-height: 1.8; }
+  .scene-meta { display: flex; gap: 12px; flex-wrap: wrap; }
+  .scene-meta-item {
+    padding: 6px 12px; border-radius: 8px; font-size: 12px; font-weight: 600;
+  }
+  .scene-meta-item.product { background: rgba(0,180,216,0.08); color: var(--cyan-dark); border: 1px solid rgba(0,180,216,0.2); }
+  .scene-meta-item.value { background: rgba(244,162,97,0.12); color: #c45e1e; border: 1px solid rgba(244,162,97,0.3); }
+
+  /* =========== OPERATIONS PAGE =========== */
+  #operations { padding-top: 68px; }
+  .ops-hero {
+    padding: 80px 24px 60px;
+    background: linear-gradient(135deg, #0a1f0a 0%, #0d2d0d 60%, #0a280a 100%);
+    text-align: center; position: relative; overflow: hidden;
+  }
+  .ops-hero::before {
+    content: ''; position: absolute; inset: 0;
+    background-image: 
+      linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.5)),
+      url("./assets/images/ops_banner.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  .ops-hero .section-title { 
+    color: white; 
+    text-shadow: 2px 4px 12px rgba(0,0,0,0.6);
+  }
+  .ops-hero .section-desc { color: rgba(255,255,255,0.75); margin: 0 auto; }
+  .highlight-num { color: var(--orange-dark); font-weight: 900; }
+
+  .value-card { border-top: 3px solid var(--cyan-main); }
+  .value-card-number {
+    font-size: 42px; font-weight: 900; color: var(--orange-dark);
+    margin-bottom: 8px; line-height: 1;
+  }
+  .value-card-label { font-size: 11px; color: #888; text-transform: uppercase; letter-spacing: 0.5px; }
+  .value-card-title { font-size: 20px; font-weight: 800; color: var(--cyan-main); margin: 12px 0 8px; }
+  .value-card-desc { font-size: 14px; color: #666; line-height: 1.8; }
+
+  /* Cost comparison */
+  .cost-table-wrap { background: white; border-radius: 20px; box-shadow: var(--shadow); overflow: hidden; }
+  .cost-table-header {
+    background: linear-gradient(135deg, #0a2942, #0a3d5e);
+    display: grid; grid-template-columns: 1fr 1fr 1fr 100px;
+    padding: 16px 28px; gap: 16px;
+  }
+  .cost-table-header span { color: rgba(255,255,255,0.8); font-size: 13px; font-weight: 600; text-align: right; }
+  .cost-table-header span:first-child { text-align: left; }
+  .cost-row {
+    display: grid; grid-template-columns: 1fr 1fr 1fr 100px;
+    padding: 18px 28px; gap: 16px;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    transition: var(--transition);
+  }
+  .cost-row:hover { background: rgba(0,180,216,0.03); }
+  .cost-row:last-child { border-bottom: none; }
+  .cost-row.total {
+    background: linear-gradient(135deg, rgba(0,180,216,0.05), rgba(0,119,182,0.03));
+    font-weight: 700;
+  }
+  .cost-cell { font-size: 14px; color: var(--text-dark); text-align: right; }
+  .cost-cell:first-child { text-align: left; font-weight: 600; }
+  .cost-cell.old { color: #999; text-decoration: line-through; }
+  .cost-cell.new { color: var(--cyan-dark); font-weight: 700; }
+  .cost-cell.save { color: var(--orange-dark); font-weight: 800; font-size: 15px; }
+  .cost-row.total .cost-cell.save { font-size: 18px; }
+
+  /* Bar chart */
+  .bar-chart-wrap { padding: 32px 28px; }
+  .bar-item { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; }
+  .bar-label { font-size: 14px; font-weight: 600; color: var(--text-dark); width: 90px; flex-shrink: 0; }
+  .bar-track { flex: 1; height: 36px; background: #f0f0f0; border-radius: 8px; overflow: hidden; position: relative; }
+  .bar-fill-old {
+    height: 50%; background: rgba(150,150,150,0.4); border-radius: 4px 4px 0 0;
+    display: flex; align-items: center; padding-left: 10px;
+    font-size: 11px; color: #666;
+  }
+  .bar-fill-new {
+    height: 50%; background: linear-gradient(90deg, var(--cyan-main), var(--cyan-dark));
+    border-radius: 0 0 4px 4px;
+    display: flex; align-items: center; padding-left: 10px;
+    font-size: 11px; color: white; font-weight: 600;
+  }
+  .bar-pct { font-size: 14px; font-weight: 800; color: var(--orange-dark); width: 50px; text-align: right; flex-shrink: 0; }
+
+  /* =========== SHOWROOM PAGE =========== */
+  #showroom { padding-top: 68px; }
+  .showroom-hero {
+    padding: 80px 24px 60px;
+    background: linear-gradient(135deg, #1a0f2e 0%, #2a1a4e 60%, #1a0f3a 100%);
+    text-align: center; position: relative; overflow: hidden;
+  }
+  .showroom-hero::before {
+    content: ''; position: absolute; inset: 0;
+    background-image: 
+      linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.5)),
+      url("./assets/images/showroom_banner.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  .showroom-hero .section-title { 
+    color: white; 
+    position: relative; z-index: 1;
+    text-shadow: 2px 4px 12px rgba(0,0,0,0.6);
+  }
+  .showroom-hero .section-desc { 
+    color: rgba(255,255,255,0.85); 
+    margin: 16px auto 0; 
+    position: relative; z-index: 1; 
+    text-shadow: 1px 2px 8px rgba(0,0,0,0.5);
+  }
+
+  .showroom-gallery {
+    display: grid; grid-template-columns: 2fr 1fr;
+    gap: 16px; margin-bottom: 40px;
+  }
+  .showroom-gallery .main-img { height: 400px; }
+  .showroom-gallery-side { display: grid; grid-template-rows: 1fr 1fr; gap: 16px; }
+  .showroom-gallery-side .side-img { height: 192px; }
+
+  /* Form */
+  .form-wrap { background: white; border-radius: 20px; box-shadow: var(--shadow); padding: 48px; }
+  .form-title { font-size: 24px; font-weight: 800; color: var(--text-dark); margin-bottom: 8px; }
+  .form-subtitle { font-size: 15px; color: #888; margin-bottom: 32px; }
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .form-group { display: flex; flex-direction: column; gap: 8px; }
+  .form-group.full { grid-column: 1 / -1; }
+  .form-label { font-size: 14px; font-weight: 600; color: var(--text-dark); }
+  .form-label .required { color: var(--orange-dark); margin-left: 3px; }
+  .form-input, .form-select, .form-textarea {
+    padding: 12px 16px; border: 1.5px solid #e0e0e0; border-radius: var(--radius-sm);
+    font-size: 15px; color: var(--text-dark); font-family: inherit;
+    transition: var(--transition); outline: none; background: #fafafa;
+  }
+  .form-input:focus, .form-select:focus, .form-textarea:focus {
+    border-color: var(--cyan-main); background: white;
+    box-shadow: 0 0 0 3px rgba(0,180,216,0.1);
+  }
+  .form-textarea { min-height: 100px; resize: vertical; }
+  .form-submit { margin-top: 8px; }
+  .form-note { font-size: 13px; color: #888; margin-top: 12px; }
+  .success-msg {
+    display: none; padding: 16px 20px; background: rgba(0,180,216,0.08);
+    border: 1px solid rgba(0,180,216,0.3); border-radius: var(--radius-sm);
+    color: var(--cyan-dark); font-size: 15px; font-weight: 600; margin-top: 16px;
+  }
+
+  /* =========== ABOUT PAGE =========== */
+  #about { padding-top: 68px; }
+  .about-hero {
+    padding: 100px 24px 80px;
+    background: linear-gradient(135deg, #0a1929 0%, #0d2d45 60%, #0a2438 100%);
+    text-align: center; position: relative; overflow: hidden;
+  }
+  .about-hero::before {
+    content: ''; position: absolute; inset: 0;
+    background-image: url("./assets/images/about_banner.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: brightness(0.55) contrast(1.1);
+  }
+  .about-hero .section-title { color: white; font-size: clamp(26px, 4vw, 46px); margin-bottom: 20px; }
+  .about-hero .slogan {
+    font-size: 22px; font-weight: 700; color: var(--orange-main); margin-bottom: 24px;
+  }
+  .about-hero .section-desc { color: rgba(255,255,255,0.75); margin: 0 auto 40px; max-width: 700px; }
+
+  .story-wrap {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;
+  }
+  .story-quote {
+    font-size: 20px; font-weight: 800; color: var(--cyan-main);
+    border-left: 4px solid var(--orange-main); padding-left: 20px;
+    margin: 24px 0; line-height: 1.5;
+  }
+
+  .policy-wrap {
+    background: linear-gradient(135deg, rgba(0,180,216,0.04), rgba(0,119,182,0.02));
+    border: 1px solid rgba(0,180,216,0.15);
+    border-radius: 20px; padding: 40px; 
+  }
+  .policy-quote {
+    background: rgba(0,180,216,0.06); border-left: 4px solid var(--cyan-main);
+    border-radius: 0 12px 12px 0; padding: 16px 20px; margin: 16px 0;
+    font-size: 15px; color: var(--text-dark); font-style: italic; line-height: 1.8;
+  }
+
+  .robot-wrap {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;
+  }
+  .robot-boxes { display: flex; flex-direction: column; gap: 16px; }
+  .robot-box-item {
+    display: flex; align-items: flex-start; gap: 16px;
+    padding: 16px 20px; background: white; border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06); transition: var(--transition);
+  }
+  .robot-box-item:hover { box-shadow: var(--shadow-hover); transform: translateX(4px); }
+  .robot-box-item-icon {
+    width: 44px; height: 44px; border-radius: 10px; flex-shrink: 0;
+    background: linear-gradient(135deg, var(--cyan-main), var(--cyan-dark));
+    display: flex; align-items: center; justify-content: center; font-size: 20px;
+  }
+  .robot-box-item-title { font-size: 15px; font-weight: 700; color: var(--cyan-main); margin-bottom: 4px; }
+  .robot-box-item-desc { font-size: 13px; color: #666; line-height: 1.6; }
+
+  .about-cta-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+  /* =========== Footer =========== */
+  footer {
+    background: #0a1929; color: rgba(255,255,255,0.6);
+    padding: 48px 24px 28px; margin-top: 0;
+  }
+  .footer-inner { max-width: 1200px; margin: 0 auto; }
+  .footer-top {
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px;
+    padding-bottom: 40px; border-bottom: 1px solid rgba(255,255,255,0.08);
+    margin-bottom: 28px;
+  }
+  .footer-brand .nav-logo { margin-bottom: 16px; }
+  .footer-brand .nav-logo .logo-cn { color: white; }
+  .footer-brand-desc { font-size: 13px; line-height: 1.8; }
+  .footer-col-title { color: white; font-size: 14px; font-weight: 700; margin-bottom: 14px; }
+  .footer-col-link { font-size: 13px; display: block; padding: 5px 0; cursor: pointer; transition: var(--transition); }
+  .footer-col-link:hover { color: var(--cyan-main); }
+  .footer-sub-item { font-size: 12px; display: block; padding: 3px 0 3px 12px; color: rgba(255,255,255,0.6); cursor: pointer; transition: var(--transition); }
+  .footer-sub-item:hover { color: var(--cyan-main); }
+  .footer-bottom-links { 
+    text-align: center; font-size: 12px; 
+    margin-bottom: 12px; 
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .footer-bottom-links a { color: rgba(255,255,255,0.5); margin: 0 8px; cursor: pointer; }
+  .footer-bottom-links a:hover { color: var(--cyan-main); }
+  .footer-bottom { text-align: center; font-size: 12px; color: rgba(255,255,255,0.4); }
+
+  /* =========== Divider =========== */
+  .divider { height: 1px; background: rgba(0,0,0,0.06); margin: 0; }
+
+  /* =========== Scroll-to-top =========== */
+  .scroll-top {
+    position: fixed; bottom: 32px; right: 32px; z-index: 900;
+    width: 44px; height: 44px; border-radius: 50%;
+    background: var(--cyan-main); color: white;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; box-shadow: 0 4px 16px rgba(0,180,216,0.4);
+    transition: var(--transition); font-size: 18px;
+    opacity: 0; pointer-events: none;
+  }
+  .scroll-top.visible { opacity: 1; pointer-events: auto; }
+  .scroll-top:hover { background: var(--cyan-dark); transform: translateY(-3px); }
+
+  /* =========== Stats Strip =========== */
+  .stats-strip {
+    background: linear-gradient(135deg, var(--cyan-main), var(--cyan-dark));
+    padding: 40px 24px;
+  }
+  .stats-grid {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px;
+    text-align: center;
+  }
+  .stat-item .stat-num { font-size: 42px; font-weight: 900; color: white; line-height: 1; }
+  .stat-item .stat-label { font-size: 14px; color: rgba(255,255,255,0.8); margin-top: 6px; }
+  .stat-item .stat-num .stat-unit { font-size: 22px; }
+
+  /* =========== JOIN US SECTION =========== */
+  /* 
+   * 如何替换内容：
+   * 1. 按钮链接：修改 <a> 标签的 href 属性
+   * 2. HR邮箱：修改 mailto: 后面的邮箱地址
+   * 3. 图片：替换 .join-us-image 的 background-image 为实际图片
+   */
+  .join-us-section {
+    padding: 80px 24px;
+    background: #F8F9FA;
+  }
+  .join-us-card {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 18px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    overflow: hidden;
+  }
+  .join-us-content {
+    padding: 56px 48px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .join-us-tag {
+    display: inline-block;
+    font-size: 13px;
+    font-weight: 600;
+    color: #00B4D8;
+    background: rgba(0,180,216,0.1);
+    padding: 6px 14px;
+    border-radius: 20px;
+    margin-bottom: 16px;
+  }
+  .join-us-title {
+    font-size: 32px;
+    font-weight: 800;
+    color: #1a1a2e;
+    margin: 0 0 8px 0;
+  }
+  .join-us-subtitle {
+    font-size: 14px;
+    color: #888;
+    margin: 0 0 24px 0;
+    letter-spacing: 1px;
+  }
+  .join-us-desc {
+    font-size: 16px;
+    line-height: 1.8;
+    color: #555;
+    margin: 0 0 32px 0;
+  }
+  .join-us-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: #F4A261;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 14px 32px;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    width: fit-content;
+    box-shadow: 0 4px 16px rgba(244,162,97,0.35);
+  }
+  .join-us-btn:hover {
+    background: #e8954d;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(244,162,97,0.45);
+  }
+  .join-us-email {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #666;
+  }
+  .join-us-email a {
+    color: #00B4D8;
+    text-decoration: none;
+    font-weight: 500;
+  }
+  .join-us-email a:hover {
+    text-decoration: underline;
+  }
+  .join-us-image {
+    overflow: hidden;
+    border-radius: 0 12px 12px 0;
+  }
+  .join-us-image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  /* 响应式布局 */
+  @media (max-width: 900px) {
+    .join-us-card {
+      grid-template-columns: 1fr;
+    }
+    .join-us-image {
+      border-radius: 0 0 12px 12px;
+      min-height: 240px;
+    }
+    .join-us-content {
+      padding: 40px 32px;
+    }
+  }
+
+  /* =========== Responsive =========== */
+  @media (max-width: 1024px) {
+    .card-grid-4 { grid-template-columns: repeat(2, 1fr); }
+    .footer-top { grid-template-columns: 1fr 1fr; gap: 28px; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .arch-boxes { grid-template-columns: 1fr; }
+    .arch-connector { display: none; }
+  }
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .card-grid-3, .card-grid-2 { grid-template-columns: 1fr; }
+    .card-grid-4 { grid-template-columns: 1fr; }
+    .positioning-wrap, .fwd-wrap, .exp-wrap, .story-wrap, .robot-wrap { grid-template-columns: 1fr; gap: 32px; }
+    .banner-slider { height: 480px; }
+    .banner-content { padding: 0 24px; }
+    .banner-title { font-size: 28px; }
+    .product-hero, .community-hero, .ops-hero, .showroom-hero, .about-hero { padding: 60px 20px 40px; }
+    .section { padding: 56px 20px; }
+    .form-grid { grid-template-columns: 1fr; }
+    .form-wrap { padding: 28px 20px; }
+    .showroom-gallery { grid-template-columns: 1fr; }
+    .showroom-gallery-side { display: none; }
+    .scene-grid { grid-template-columns: 1fr; }
+    .cost-table-header, .cost-row { grid-template-columns: 1fr 1fr; }
+    .cost-table-header span:nth-child(2), .cost-row .cost-cell:nth-child(2) { display: none; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .footer-top { grid-template-columns: 1fr; }
+    .about-cta-buttons { flex-direction: column; align-items: center; }
+    .banner-deco { display: none; }
+    .product-box-header { padding: 24px 20px; }
+    .product-box-body { padding: 24px 20px; }
+  }
+  @media (max-width: 480px) {
+    .stats-grid { grid-template-columns: 1fr 1fr; }
+    .banner-slider { height: 420px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- =========== NAVBAR =========== -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a class="nav-logo" href="http://127.0.0.1:8080/#" onclick="showPage(&#39;home&#39;)">
+      <img src="./assets/images/logo_transparent.png" alt="EaseLiving AI" class="logo-img" style="height:48px;">
+      <div class="logo-text">
+        <span class="logo-cn">居易人工智能</span>
+        <span class="logo-en">EaseLiving AI</span>
+      </div>
+    </a>
+    <div class="nav-links">
+      <a onclick="showPage(&#39;home&#39;)" id="nav-home" class="active">首页</a>
+      <a onclick="showPage(&#39;products&#39;)" id="nav-products">产品与服务</a>
+      <a onclick="showPage(&#39;community&#39;)" id="nav-community">智慧社区</a>
+      <a onclick="showPage(&#39;operations&#39;)" id="nav-operations">智慧运营</a>
+      <a onclick="showPage(&#39;showroom&#39;)" id="nav-showroom">体验与合作</a>
+      <a onclick="showPage(&#39;about&#39;)" id="nav-about">关于我们</a>
+    </div>
+    <div class="hamburger" onclick="toggleMobile()" id="hamburger">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <a onclick="showPage(&#39;home&#39;);closeMobile()">首页</a>
+  <a onclick="showPage(&#39;products&#39;);closeMobile()">产品与服务</a>
+  <a onclick="showPage(&#39;community&#39;);closeMobile()">智慧社区</a>
+  <a onclick="showPage(&#39;operations&#39;);closeMobile()">智慧运营</a>
+  <a onclick="showPage(&#39;showroom&#39;);closeMobile()">体验与合作</a>
+  <a onclick="showPage(&#39;about&#39;);closeMobile()">关于我们</a>
+</div>
+
+<!-- ===================================================
+     PAGE 1: HOME
+     =================================================== -->
+<div id="home" class="page-section active">
+
+  <!-- Banner Slider -->
+  <div class="banner-slider" id="bannerSlider">
+    <!-- Slide 1 -->
+    <div class="banner-slide" id="slide-0">
+      <div class="banner-bg banner-bg-1">
+        <div class="banner-deco">
+          <div class="banner-deco-grid"></div>
+          <div class="banner-deco-shape"></div>
+          <div class="banner-deco-shape2"></div>
+        </div>
+      </div>
+      <div class="banner-content">
+        <div class="banner-label">Space Cube 空间智能体</div>
+        <h1 class="banner-title">让每一栋楼，<br>都成为智慧社区</h1>
+        <p class="banner-sub">Space Cube空间智能体，用智慧创造价值</p>
+        <a class="btn btn-orange" onclick="showPage(&#39;operations&#39;)">了解智慧运营 →</a>
+      </div>
+    </div>
+    <!-- Slide 2 -->
+    <div class="banner-slide" id="slide-1">
+      <div class="banner-bg banner-bg-2">
+        <div class="banner-deco">
+          <div class="banner-deco-grid"></div>
+          <div class="banner-deco-shape"></div>
+          <div class="banner-deco-shape2"></div>
+        </div>
+      </div>
+      <div class="banner-content">
+        <div class="banner-label">智慧社区解决方案</div>
+        <h1 class="banner-title">让每一个空间，<br>都学会思考</h1>
+        <p class="banner-sub">Space Cube空间智能体，让科技服务于人</p>
+        <a class="btn btn-orange" onclick="showPage(&#39;community&#39;)">体验智慧生活 →</a>
+      </div>
+    </div>
+    <!-- Slide 3 -->
+    <div class="banner-slide active" id="slide-2">
+      <div class="banner-bg banner-bg-3">
+        <div class="banner-deco">
+          <div class="banner-deco-grid"></div>
+          <div class="banner-deco-shape"></div>
+          <div class="banner-deco-shape2"></div>
+        </div>
+      </div>
+      <div class="banner-content">
+        <div class="banner-label">具身智能 · 前瞻布局</div>
+        <h1 class="banner-title">人形机器人进入家庭前的<br>"数据训练场"</h1>
+        <p class="banner-sub">Space Cube空间智能体，为人形机器人进入家庭积累每一刻的智慧和记忆</p>
+        <a class="btn btn-orange" onclick="showPage(&#39;about&#39;);setTimeout(()=&gt;scrollToSection(&#39;forward&#39;),300)">探索技术远景 →</a>
+      </div>
+    </div>
+    <!-- Dots -->
+    <div class="banner-dots">
+      <div class="banner-dot" onclick="goToSlide(0)"></div>
+      <div class="banner-dot" onclick="goToSlide(1)"></div>
+      <div class="banner-dot active" onclick="goToSlide(2)"></div>
+    </div>
+  </div>
+
+  <!-- Stats Strip -->
+  <div class="stats-strip">
+    <div class="stats-grid">
+      <div class="stat-item"><div class="stat-num">3<span class="stat-unit">大</span></div><div class="stat-label">智联盒子</div></div>
+      <div class="stat-item"><div class="stat-num">49<span class="stat-unit">%</span></div><div class="stat-label">运营成本节约</div></div>
+      <div class="stat-item"><div class="stat-num">50<span class="stat-unit">㎡+</span></div><div class="stat-label">实景展厅体验</div></div>
+      <div class="stat-item"><div class="stat-num">24<span class="stat-unit">/7</span></div><div class="stat-label">全天候智能守护</div></div>
+    </div>
+  </div>
+
+  <!-- Section 2: Positioning -->
+  <section class="section">
+    <div class="container">
+      <div class="positioning-wrap">
+        <div class="positioning-text">
+          <span class="section-tag">公司定位</span>
+          <h2 class="section-title"><span class="cyan">智慧栖居，</span>舒适生活</h2>
+          <p class="section-desc">
+            我们是一家"空间智能操作系统"公司——通过自研的AI智能设备Space Cube（空间智能体Box），为建筑提供从室内到社区的多场景AI智能应用方案，致力于打造科技服务于人、舒适宜居的AI智慧社区。
+          </p>
+          <a class="btn btn-orange" onclick="showPage(&#39;products&#39;)">了解我们的产品 →</a>
+        </div>
+        <img src="./assets/images/content_img01.png" style="width:100%; object-fit:cover; border-radius:12px; display:block; height:360px;" alt="" />
+        
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 3: Product Core -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="text-center">
+        <span class="section-tag">核心产品</span>
+        <h2 class="section-title"><span class="cyan">Space Cube</span> —— AI空间智能体<br>智慧场景的底层操作系统</h2>
+        <p class="section-desc">一个云端大脑 + 三大智联盒子，构建从室内到社区的全场景智能闭环</p>
+      </div>
+      <div class="product-arch">
+        <div class="arch-title">AIoT云平台 · 空间智能大脑<br><span style="font-size:14px;opacity:0.7;font-weight:400;">统一数据中台 · 智能决策引擎 · 远程管理</span></div>
+        <div class="arch-cloud">
+          <div class="arch-cloud-box">
+            ☁️ AIoT云平台
+            <div class="arch-box-sub">数据汇聚 · 智能决策 · 远程管理</div>
+          </div>
+        </div>
+        <div class="arch-connector">
+          <div class="arch-dots">
+            <div class="arch-dot-line"><div class="arch-dot-circle"></div><div class="arch-line-v"></div></div>
+            <div class="arch-dot-line"><div class="arch-dot-circle"></div><div class="arch-line-v"></div></div>
+            <div class="arch-dot-line"><div class="arch-dot-circle"></div><div class="arch-line-v"></div></div>
+          </div>
+        </div>
+        <div class="arch-boxes">
+          <div class="arch-box">
+            <div class="arch-box-icon">🏠</div>
+            <div class="arch-box-name">空间智联Box</div>
+            <div class="arch-box-desc">懂你的生活管家<br>家庭/室内空间智能化</div>
+          </div>
+          <div class="arch-box">
+            <div class="arch-box-icon">🏢</div>
+            <div class="arch-box-name">社区智联Box</div>
+            <div class="arch-box-desc">守秩序的系统管家<br>社区/楼宇公共区域管理</div>
+          </div>
+          <div class="arch-box">
+            <div class="arch-box-icon">🤖</div>
+            <div class="arch-box-name">机器人交互Box</div>
+            <div class="arch-box-desc">会干活的调度总管<br>跨空间机器人集群调度</div>
+          </div>
+        </div>
+      </div>
+      <div class="text-center">
+        <a class="btn btn-orange" onclick="showPage(&#39;products&#39;)">探索产品详情 →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 4: Forward Looking -->
+  <section class="section" id="home-forward">
+    <div class="container">
+      <div class="fwd-wrap">
+        <div>
+          <span class="section-tag">前瞻布局</span>
+          <h2 class="section-title"><span class="cyan">人形机器人进入家庭前的</span><br>数据训练场</h2>
+          <div class="fwd-highlight">
+            我们是人形机器人进入家庭前的"数据训练场"和"环境预埋基础设施"。三大盒子形成强大的空间智能体，成为具身智能机器人的"操作系统"和"数据底座"。
+          </div>
+          <a class="btn btn-orange" onclick="showPage(&#39;about&#39;);setTimeout(()=&gt;scrollToSection(&#39;forward&#39;),300)">了解我们的技术远景 →</a>
+        </div>
+        <img src="./assets/images/content_img02.png" style="width:100%; object-fit:cover; border-radius:12px; display:block; height:380px;" alt="" />
+        
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 5: Experience -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="exp-wrap">
+        <img src="./assets/images/content_img03.png" style="width:100%; object-fit:cover; border-radius:12px; display:block; height:340px; width:100%;" alt="" />
+        
+        <div>
+          <span class="section-tag">亲身体验</span>
+          <h2 class="section-title">亲身体验<br><span class="cyan">会思考的空间</span></h2>
+          <p class="section-desc">50-100㎡实景智慧房屋，现场体验智慧社区场景。三大盒子实景联动，四大生活场景沉浸体验。</p>
+          <a class="btn btn-orange" onclick="showPage(&#39;showroom&#39;)">前往体验 →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<!-- ================================================
+     NEWS SECTION - 新闻动态
+     ================================================ -->
+<section class="news-section" style="padding: 80px 0; background: var(--bg-light);">
+  <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+    
+    <!-- Section Header -->
+    <div style="text-align: center; margin-bottom: 50px;">
+      <span class="section-tag">新闻动态</span>
+    </div>
+
+    <!-- News Grid -->
+    <div class="news-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px;">
+
+      <!-- News Card 1: Image + Text -->
+      <article class="news-card" style="background: white; border-radius: 16px; overflow: hidden; box-shadow: var(--shadow); transition: transform 0.3s;">
+        <div class="news-image" style="height: 200px; overflow: hidden;">
+          <img src="./assets/images/content_img01.png" alt="Space Cube 发布" style="width: 100%; height: 100%; object-fit: cover;">
+        </div>
+        <div class="news-content" style="padding: 24px;">
+          <div class="news-meta" style="display: flex; gap: 12px; margin-bottom: 12px;">
+            <span class="news-tag" style="background: rgba(0,180,216,0.1); color: var(--cyan-main); padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600;">产品发布</span>
+            <span class="news-date" style="color: #999; font-size: 12px;">2026年4月</span>
+          </div>
+          <h3 class="news-title" style="font-size: 18px; font-weight: 700; color: var(--text-dark); margin-bottom: 12px; line-height: 1.4;">
+            <a href="#" style="text-decoration: none; color: inherit;">Space Cube 空间智能体正式发布</a>
+          </h3>
+          <p class="news-excerpt" style="color: #666; font-size: 14px; line-height: 1.6; margin-bottom: 16px;">
+            居易人工智能正式发布 Space Cube 空间智能体，为智慧社区提供全新的 AI 操作系统解决方案...
+          </p>
+          <a href="#" class="news-link" style="color: var(--cyan-main); font-size: 14px; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 6px;">
+            阅读全文 →
+          </a>
+        </div>
+      </article>
+
+      <!-- News Card 2: Video Embed -->
+      <article class="news-card" style="background: white; border-radius: 16px; overflow: hidden; box-shadow: var(--shadow); transition: transform 0.3s;">
+        <div class="news-video" style="height: 200px; background: var(--text-dark); display: flex; align-items: center; justify-content: center; position: relative;">
+          <video poster="./assets/images/content_img02.png" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.7;">
+            <source src="#" type="video/mp4">
+          </video>
+          <div style="position: absolute; text-align: center;">
+            <div style="width: 60px; height: 60px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto; cursor: pointer;">
+              <svg width="20" height="20" fill="var(--cyan-main)" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+            <p style="color: white; font-size: 12px; margin-top: 8px;">观看演示视频</p>
+          </div>
+        </div>
+        <div class="news-content" style="padding: 24px;">
+          <div class="news-meta" style="display: flex; gap: 12px; margin-bottom: 12px;">
+            <span class="news-tag" style="background: rgba(244,162,97,0.1); color: var(--orange-main); padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600;">视频演示</span>
+            <span class="news-date" style="color: #999; font-size: 12px;">2026年4月</span>
+          </div>
+          <h3 class="news-title" style="font-size: 18px; font-weight: 700; color: var(--text-dark); margin-bottom: 12px; line-height: 1.4;">
+            <a href="#" style="text-decoration: none; color: inherit;">Space Cube 智慧社区场景演示</a>
+          </h3>
+          <p class="news-excerpt" style="color: #666; font-size: 14px; line-height: 1.6; margin-bottom: 16px;">
+            通过视频了解 Space Cube 如何实现室内外全场景智能联动...
+          </p>
+          <a href="#" class="news-link" style="color: var(--cyan-main); font-size: 14px; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 6px;">
+            观看视频 →
+          </a>
+        </div>
+      </article>
+
+      <!-- News Card 3: Text + Links -->
+      <article class="news-card" style="background: white; border-radius: 16px; overflow: hidden; box-shadow: var(--shadow); transition: transform 0.3s;">
+        <div class="news-content" style="padding: 24px;">
+          <div class="news-meta" style="display: flex; gap: 12px; margin-bottom: 12px;">
+            <span class="news-tag" style="background: rgba(0,180,216,0.1); color: var(--cyan-main); padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600;">媒体报道</span>
+            <span class="news-date" style="color: #999; font-size: 12px;">2026年3月</span>
+          </div>
+          <h3 class="news-title" style="font-size: 18px; font-weight: 700; color: var(--text-dark); margin-bottom: 12px; line-height: 1.4;">
+            <a href="#" style="text-decoration: none; color: inherit;">居易人工智能完成天使轮融资</a>
+          </h3>
+          <p class="news-excerpt" style="color: #666; font-size: 14px; line-height: 1.6; margin-bottom: 16px;">
+            居易人工智能宣布完成天使轮融资，将用于 Space Cube 产品研发和市場拓展...
+          </p>
+          <div class="news-links" style="border-top: 1px solid #eee; padding-top: 16px; margin-top: 8px;">
+            <p style="font-size: 12px; color: #999; margin-bottom: 8px;">相关链接：</p>
+            <a href="https://github.com/loonmama/1" target="_blank" style="color: var(--cyan-main); font-size: 13px; text-decoration: none; display: block; margin-bottom: 4px;">
+              → 公司官网
+            </a>
+            <a href="#" style="color: var(--cyan-main); font-size: 13px; text-decoration: none; display: block;">
+              → 新闻详情
+            </a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+  </div>
+</section>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="nav-logo" style="margin-bottom:16px;">
+            <img src="./assets/images/logo_transparent.png" alt="EaseLiving AI" class="logo-img" style="height:56px;">
+            <div class="logo-text">
+              <span class="logo-cn">居易人工智能</span>
+              <span class="logo-en">EaseLiving AI</span>
+            </div>
+          </div>
+          <p class="footer-brand-desc">智慧栖居，舒适生活</p>
+        </div>
+        <div>
+          <div class="footer-col-title">产品</div>
+          <span class="footer-col-link" onclick="showPage(&#39;products&#39;)">Space Cube</span>
+          <span class="footer-col-link" onclick="showPage(&#39;products&#39;)">空间智联 Box</span>
+          <span class="footer-col-link" onclick="showPage(&#39;products&#39;)">社区智联 Box</span>
+          <span class="footer-col-link" onclick="showPage(&#39;products&#39;)">机器人交互 Box</span>
+        </div>
+        <div>
+          <div class="footer-col-title">解决方案</div>
+          <span class="footer-col-link" onclick="showPage(&#39;community&#39;)">智慧社区</span>
+          <span class="footer-col-link" onclick="showPage(&#39;operations&#39;)">智慧运营</span>
+          <span class="footer-col-link" onclick="showPage(&#39;showroom&#39;)">商务合作</span>
+        </div>
+        <div>
+          <div class="footer-col-title">关于</div>
+          <span class="footer-col-link" onclick="showPage(&#39;about&#39;)">公司介绍</span>
+          <span class="footer-col-link" onclick="showPage(&#39;about&#39;)">品牌故事</span>
+          <span class="footer-col-link" onclick="showPage(&#39;showroom&#39;)">媒体中心</span>
+          <span class="footer-col-link" onclick="showPage(&#39;showroom&#39;)">加入我们</span>
+        </div>
+      </div>
+      <div class="footer-bottom-links">
+        <a>隐私政策</a>|<a>使用条款</a>|<a>联系我们</a>
+      </div>
+      <div class="footer-bottom">© 2026 居易人工智能有限公司 保留所有权利 &nbsp;|&nbsp; EaseLiving AI Co., Ltd.</div>
+    </div>
+  </footer>
+</div>
+
+
+<!-- ===================================================
+     PAGE 2: PRODUCTS & SERVICES
+     =================================================== -->
+<div id="products" class="page-section">
+  <div class="product-hero">
+    <div class="container" style="position:relative;z-index:1;">
+      <h1 class="section-title" style="color:white;margin-bottom:16px;">
+        <span class="cyan">Space Cube</span> —— AI空间智能体<br>智慧场景的底层操作系统
+      </h1>
+    </div>
+  </div>
+
+  <!-- Product Architecture -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="text-center">
+        <span class="section-tag">产品架构</span>
+        <h2 class="section-title">一个云端大脑 + <span class="cyan">三大智联盒子</span></h2>
+        <p class="section-desc">为建筑提供从室内到社区的多场景AI智能应用方案</p>
+      </div>
+      <div class="product-arch" style="margin-bottom:0;">
+        <div class="arch-title">☁️ AIoT云平台 · <span>统一数据中台 · 智能决策引擎 · 远程管理</span></div>
+        <div class="arch-cloud">
+          <div class="arch-cloud-box">
+            Space Cube 云端大脑
+            <div class="arch-box-sub">全量数据汇聚 · AI决策中枢 · 边云协同 · 远程运维</div>
+          </div>
+        </div>
+        <div class="arch-connector">
+          <div class="arch-dots">
+            <div class="arch-dot-line"><div class="arch-dot-circle"></div><div class="arch-line-v"></div></div>
+            <div class="arch-dot-line"><div class="arch-dot-circle"></div><div class="arch-line-v"></div></div>
+            <div class="arch-dot-line"><div class="arch-dot-circle"></div><div class="arch-line-v"></div></div>
+          </div>
+        </div>
+        <div class="arch-boxes">
+          <div class="arch-box">
+            <div class="arch-box-icon">🏠</div>
+            <div class="arch-box-name">空间智联Box</div>
+            <div class="arch-box-desc">懂你的生活管家<br>语音/触控 · 环境感知 · 习惯学习</div>
+          </div>
+          <div class="arch-box">
+            <div class="arch-box-icon">🏢</div>
+            <div class="arch-box-name">社区智联Box</div>
+            <div class="arch-box-desc">守秩序的系统管家<br>监控门禁 · 规则联动 · 安全运维</div>
+          </div>
+          <div class="arch-box">
+            <div class="arch-box-icon">🤖</div>
+            <div class="arch-box-name">机器人交互Box</div>
+            <div class="arch-box-desc">会干活的调度总管<br>机器人调度 · 任务协同 · 服务集成</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Three Box Details -->
+  <section class="product-boxes-section">
+    <div class="container">
+      <div class="text-center" style="margin-bottom:40px;">
+        <span class="section-tag">三大智联盒子</span>
+        <h2 class="section-title">各司其职，协同作战</h2>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:28px;">
+
+        <!-- Box 1 -->
+        <div class="product-box-card">
+          <div class="product-box-header">
+            <div class="product-box-icon">🏠</div>
+            <div class="product-box-header-text">
+              <div class="product-box-name">空间智联Box —— 懂你的生活管家</div>
+              <div class="product-box-tagline">让每个室内空间有温度、有记忆</div>
+              <div class="product-box-scene">服务场景：家庭 / 室内空间</div>
+            </div>
+          </div>
+          <div class="product-box-body">
+            <p class="product-box-mission">连接家用电器，感知人的意图，提供个性化、舒适、便捷的生活体验。通过持续的感知与学习，空间智联Box逐步形成专属于每位居住者的"空间画像"，让家真正懂你。</p>
+            <div class="product-box-caps">
+              <div class="product-box-caps-title">核心能力</div>
+              <div class="product-box-cap-item">语音 / 触控指令接收与执行</div>
+              <div class="product-box-cap-item">温湿度 / 光照 / 人体存在感知</div>
+              <div class="product-box-cap-item">家电智能控制与场景联动</div>
+              <div class="product-box-cap-item">学习个人生活习惯，自动优化体验</div>
+            </div>
+            <div class="product-box-tags">
+              <span class="tag">多模态感知</span>
+              <span class="tag">习惯学习</span>
+              <span class="tag">隐私保护</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Box 2 -->
+        <div class="product-box-card">
+          <div class="product-box-header">
+            <div class="product-box-icon">🏢</div>
+            <div class="product-box-header-text">
+              <div class="product-box-name">社区智联Box —— 守秩序的系统管家</div>
+              <div class="product-box-tagline">让社区公共空间安全、高效、有序</div>
+              <div class="product-box-scene">服务场景：社区 / 楼宇公共区域</div>
+            </div>
+          </div>
+          <div class="product-box-body">
+            <p class="product-box-mission">连接公共系统设备，保障社区安全、秩序、高效运转；响应社区共同需求，将分散的管理节点统一纳入智能运营体系。</p>
+            <div class="product-box-caps">
+              <div class="product-box-caps-title">核心能力</div>
+              <div class="product-box-cap-item">监控 / 门禁 / 电梯 / 消防设备接入</div>
+              <div class="product-box-cap-item">设备状态实时监测与预警</div>
+              <div class="product-box-cap-item">规则化联动执行，自动响应事件</div>
+              <div class="product-box-cap-item">社区事件记录与区块链存证</div>
+            </div>
+            <div class="product-box-tags">
+              <span class="tag">设备互联</span>
+              <span class="tag">规则引擎</span>
+              <span class="tag">安全联动</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Box 3 -->
+        <div class="product-box-card">
+          <div class="product-box-header">
+            <div class="product-box-icon">🤖</div>
+            <div class="product-box-header-text">
+              <div class="product-box-name">机器人交互Box —— 会干活的调度总管</div>
+              <div class="product-box-tagline">让机器人真正融入社区服务体系</div>
+              <div class="product-box-scene">服务场景：跨空间（室内 + 室外）</div>
+            </div>
+          </div>
+          <div class="product-box-body">
+            <p class="product-box-mission">对接各类机器人及自动化设备，实现集群调度、任务协同与外部服务联动。作为人形机器人进入家庭的"基础设施预埋层"，积累宝贵的空间行为数据。</p>
+            <div class="product-box-caps">
+              <div class="product-box-caps-title">核心能力</div>
+              <div class="product-box-cap-item">配送 / 巡更 / 清洁机器人接入</div>
+              <div class="product-box-cap-item">智能任务分配与优先级调度</div>
+              <div class="product-box-cap-item">多机协同，避免冲突与重复</div>
+              <div class="product-box-cap-item">外部服务联动（快递、医疗、应急）</div>
+            </div>
+            <div class="product-box-tags">
+              <span class="tag">集群调度</span>
+              <span class="tag">任务协同</span>
+              <span class="tag">服务集成</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tech Highlights -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="text-center">
+        <span class="section-tag">技术亮点</span>
+        <h2 class="section-title">四大核心技术，<span class="cyan">构建可信智慧空间</span></h2>
+      </div>
+      <div class="card-grid-4">
+        <div class="card tech-card">
+          <div class="tech-card-icon">🛡️</div>
+          <div class="tech-card-title">高维多元安全识别技术</div>
+          <div class="tech-card-desc">通过多维数字安全认证实现对人员身份的精准感知与识别，在保障安全的同时，全程保护用户隐私。</div>
+        </div>
+        <div class="card tech-card">
+          <div class="tech-card-icon">🌐</div>
+          <div class="tech-card-title">空间物联网技术</div>
+          <div class="tech-card-desc">打破设备与机器人孤岛，构建全域无感的设备互联网络，实现异构设备的统一接入与协同。</div>
+        </div>
+        <div class="card tech-card">
+          <div class="tech-card-icon">🔐</div>
+          <div class="tech-card-title">加密数据通讯技术</div>
+          <div class="tech-card-desc">构建全链路数据安全闭环，确保数据在传输与存储过程中绝对可信，杜绝数据泄漏与篡改。</div>
+        </div>
+        <div class="card tech-card">
+          <div class="tech-card-icon">⛓️</div>
+          <div class="tech-card-title">区块链信任技术</div>
+          <div class="tech-card-desc">实现数据全生命周期不可篡改与可追溯，适用于租赁合同、计费数据等高价值业务场景的信任保障。</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bottom CTA -->
+  <section class="section">
+    <div class="container text-center">
+      <h2 class="section-title" style="margin-bottom:12px;">Space Cube 能为您创造什么？</h2>
+      <p class="section-desc">无论您关注居住体验还是楼宇运营效益，Space Cube都有答案</p>
+      <div style="display:flex;gap:20px;justify-content:center;flex-wrap:wrap;">
+        <a class="btn btn-orange" onclick="showPage(&#39;community&#39;)">看看它能创造怎样的智慧生活 →</a>
+        <a class="btn btn-outline-cyan" onclick="showPage(&#39;operations&#39;)">看看它能如何优化楼宇运营 →</a>
+      </div>
+    </div>
+  </section>
+
+
+
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="nav-logo" style="margin-bottom:16px;">
+            <img src="./assets/images/logo_transparent.png" alt="EaseLiving AI" class="logo-img" style="height:56px;">
+            <div class="logo-text">
+              <span class="logo-cn">居易人工智能</span>
+              <span class="logo-en">EaseLiving AI</span>
+            </div>
+          </div>
+          <p class="footer-brand-desc">智慧栖居，舒适生活</p>
+        </div>
+        <div>
+          <div class="footer-col-title">产品</div>
+          <span class="footer-col-link" onclick="showPage(&#39;products&#39;)">Space Cube</span>
+          <span class="footer-col-link" onclick="showPage(&#39;products&#39;)">空间智联 Box</span>
+          <span class="footer-col-link" onclick="showPage(&#39;products&#39;)">社区智联 Box</span>
+          <span class="footer-col-link" onclick="showPage(&#39;products&#39;)">机器人交互 Box</span>
+        </div>
+        <div>
+          <div class="footer-col-title">解决方案</div>
+          <span class="footer-col-link" onclick="showPage(&#39;community&#39;)">智慧社区</span>
+          <span class="footer-col-link" onclick="showPage(&#39;operations&#39;)">智慧运营</span>
+          <span class="footer-col-link" onclick="showPage(&#39;showroom&#39;)">商务合作</span>
+        </div>
+        <div>
+          <div class="footer-col-title">关于</div>
+          <span class="footer-col-link" onclick="showPage(&#39;about&#39;)">公司介绍</span>
+          <span class="footer-col-link" onclick="showPage(&#39;about&#39;)">品牌故事</span>
+          <span class="footer-col-link" onclick="showPage(&#39;showroom&#39;)">媒体中心</span>
+          <span class="footer-col-link" onclick="showPage(&#39;showroom&#39;)">加入我们</span>
+        </div>
+      </div>
+      <div class="footer-bottom-links">
+        <a>隐私政策</a>|<a>使用条款</a>|<a>联系我们</a>
+      </div>
+      <div class="footer-bottom">© 2026 居易人工智能有限公司 保留所有权利</div>
+    </div>
+  </footer>
+</div>
+
+
+<!-- ===================================================
+     PAGE 3: COMMUNITY
+     =================================================== -->
+<div id="community" class="page-section">
+  <div class="community-hero">
+    <div class="container" style="position:relative;z-index:1;">
+      <h1 class="section-title" style="color:white;">
+        让您的楼宇，成为年轻白领<br><span class="cyan">向往并首选的智慧社区</span>
+      </h1>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container">
+      <div class="text-center" style="margin-bottom:48px;">
+        <span class="section-tag">智慧生活场景</span>
+        <h2 class="section-title">一天的智慧生活，<span class="cyan">从早到晚都在掌控</span></h2>
+      </div>
+      <div class="scene-grid">
+        <!-- Scene 1 -->
+        <div class="scene-card">
+          <div class="scene-card-header">
+            <div class="scene-time">08:00 AM</div>
+            <div class="scene-card-title">离家模式</div>
+          </div>
+          <div class="scene-card-body">
+            <img src="./assets/images/content_img04.png" style="width:100%; object-fit:cover; border-radius:12px; display:block; height:180px; margin-bottom:20px;" alt="" />
+            
+            <p class="scene-desc">系统一键接管，自动关窗、断电、关空调，安防雷达上线，隐患瞬间清零。出门无忧，一切交给Space Cube。</p>
+            <div class="scene-meta">
+              <span class="scene-meta-item product">社区智联Box + 空间智联Box联动</span>
+              <span class="scene-meta-item value">降低空置能耗 · 提升安全口碑</span>
+            </div>
+          </div>
+        </div>
+        <!-- Scene 2 -->
+        <div class="scene-card">
+          <div class="scene-card-header">
+            <div class="scene-time">06:30 PM</div>
+            <div class="scene-card-title">归家模式</div>
+          </div>
+          <div class="scene-card-body">
+            <img src="./assets/images/content_img05.png" style="width:100%; object-fit:cover; border-radius:12px; display:block; height:180px; margin-bottom:20px;" alt="" />
+            
+            <p class="scene-desc">基于LBS位置预判，提前调节适宜室温与个性化灯光，进门即享最佳环境。家，在你到来之前就准备好了。</p>
+            <div class="scene-meta">
+              <span class="scene-meta-item product">空间智联Box · 习惯学习</span>
+              <span class="scene-meta-item value">提升租客续租率</span>
+            </div>
+          </div>
+        </div>
+        <!-- Scene 3 -->
+        <div class="scene-card">
+          <div class="scene-card-header">
+            <div class="scene-time">周末</div>
+            <div class="scene-card-title">社区互动</div>
+          </div>
+          <div class="scene-card-body">
+            <img src="./assets/images/content_img06.png" style="width:100%; object-fit:cover; border-radius:12px; display:block; height:180px; margin-bottom:20px;" alt="" />
+            
+            <p class="scene-desc">在线智能拼单，访客临时门禁码自动生成，打破钢筋水泥的隔阂，让邻里关系更有温度。</p>
+            <div class="scene-meta">
+              <span class="scene-meta-item product">社区智联Box + 区块链信任</span>
+              <span class="scene-meta-item value">增强社区粘性 · 降低管理投诉</span>
+            </div>
+          </div>
+        </div>
+        <!-- Scene 4 -->
+        <div class="scene-card">
+          <div class="scene-card-header">
+            <div class="scene-time">24 / 7</div>
+            <div class="scene-card-title">紧急服务</div>
+          </div>
+          <div class="scene-card-body">
+            <img src="./assets/images/content_img07.png" style="width:100%; object-fit:cover; border-radius:12px; display:block; height:180px; margin-bottom:20px;" alt="" />
+            
+            <p class="scene-desc">专为独居住户设计，语音一键求助直达云端，联动无人车极速配送应急物资。独居也安心，有我在。</p>
+            <div class="scene-meta">
+              <span class="scene-meta-item product">机器人交互Box + 社区智联Box</span>
+              <span class="scene-meta-item value">打造安全标签 · 降低法律风险</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center" style="margin-top:48px;">
+        <a class="btn btn-orange" onclick="showPage(&#39;showroom&#39;)">让您的楼宇拥有这些场景 →</a>
+      </div>
+    </div>
+  </section>
+
+
+
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="nav-logo" style="margin-bottom:16px;">
+            <img src="./assets/images/logo_transparent.png" alt="EaseLiving AI" class="logo-img" style="height:56px;">
+            <div class="logo-text">
+              <span class="logo-cn">居易人工智能</span>
+              <span class="logo-en">EaseLiving AI</span>
+            </div>
+          </div>
+          <p class="footer-brand-desc">智慧栖居，舒适生活</p>
+        </div>
+        <div>
+          <div class="footer-col-title">产品</div>
+          <span class="footer-col-link" onclick="showPage(&#39;products&#39;)">Space Cube</span>
+          <span class="footer-col-link" onclick="showPage(&#39;products&#39;)">空间智联 Box</span>
+          <span class="footer-col-link" onclick="showPage(&#39;products&#39;)">社区智联 Box</span>
+          <span class="footer-col-link" onclick="showPage(&#39;products&#39;)">机器人交互 Box</span>
+        </div>
+        <div>
+          <div class="footer-col-title">解决方案</div>
+          <span class="footer-col-link" onclick="showPage(&#39;community&#39;)">智慧社区</span>
+          <span class="footer-col-link" onclick="showPage(&#39;operations&#39;)">智慧运营</span>
+          <span class="footer-col-link" onclick="showPage(&#39;showroom&#39;)">商务合作</span>
+        </div>
+        <div>
+          <div class="footer-col-title">关于</div>
+          <span class="footer-col-link" onclick="showPage(&#39;about&#39;)">公司介绍</span>
+          <span class="footer-col-link" onclick="showPage(&#39;about&#39;)">品牌故事</span>
+          <span class="footer-col-link" onclick="showPage(&#39;showroom&#39;)">媒体中心</span>
+          <span class="footer-col-link" onclick="showPage(&#39;showroom&#39;)">加入我们</span>
+        </div>
+      </div>
+      <div class="footer-bottom-links">
+        <a>隐私政策</a>|<a>使用条款</a>|<a>联系我们</a>
+      </div>
+      <div class="footer-bottom">© 2026 居易人工智能有限公司 保留所有权利</div>
+    </div>
+  </footer>
+</div>
+
+
+<!-- ===================================================
+     PAGE 4: OPERATIONS
+     =================================================== -->
+<div id="operations" class="page-section">
+  <div class="ops-hero">
+    <div class="ops-hero-bg"></div>
+    <div class="container" style="position:relative;z-index:1;">
+      <h1 class="section-title" style="color:white;">
+        Space Cube不仅是您的智能管家，<br><span class="cyan">更是您的数字运营总监</span>
+      </h1>
+    </div>
+  </div>
+
+  <!-- Three Value Cards -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="text-center" style="margin-bottom:40px;">
+        <span class="section-tag">三大核心价值</span>
+        <h2 class="section-title">用AI重塑楼宇运营<span class="cyan">竞争力</span></h2>
+      </div>
+      <div class="card-grid-3">
+        <div class="card value-card">
+          <div class="value-card-number">55<span style="font-size:22px;">%</span></div>
+          <div class="value-card-label">人力成本节约</div>
+          <div class="value-card-title">📉 降本</div>
+          <div class="value-card-desc">减少固定人力依赖，降低能耗。自动化执行日常运营任务，让人力专注于高价值工作。<br><br>人力成本节约 <strong style="color:var(--orange-dark);">55%</strong> | 能耗节约 <strong style="color:var(--orange-dark);">30%</strong></div>
+        </div>
+        <div class="card value-card">
+          <div class="value-card-number">60<span style="font-size:22px;">%</span></div>
+          <div class="value-card-label">故障响应时间缩短</div>
+          <div class="value-card-title">⚡ 增效</div>
+          <div class="value-card-desc">自动化运营，减少管理负担。设备预测维护，在故障发生前主动干预，降低损失。<br><br>设备预测维护 | 故障响应时间缩短 <strong style="color:var(--orange-dark);">60%</strong></div>
+        </div>
+        <div class="card value-card">
+          <div class="value-card-number">15<span style="font-size:22px;">%</span></div>
+          <div class="value-card-label">租金溢价最高可达</div>
+          <div class="value-card-title">💰 增收</div>
+          <div class="value-card-desc">打造智慧社区卖点，提升租金和出租率。差异化竞争力，吸引年轻白领租客。<br><br>租金溢价可达 <strong style="color:var(--orange-dark);">8-15%</strong> | 出租率提升</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cost Comparison -->
+  <section class="section">
+    <div class="container">
+      <div class="text-center" style="margin-bottom:40px;">
+        <span class="section-tag">成本对比</span>
+        <h2 class="section-title">以<span class="cyan">100间公寓</span>规模为例</h2>
+        <p class="section-desc">传统模式 vs 智慧运营模式——数字说话</p>
+      </div>
+
+      <!-- Bar Chart Visual -->
+      <div class="cost-table-wrap" style="margin-bottom:32px;">
+        <div class="bar-chart-wrap">
+          <div style="display:flex;gap:24px;margin-bottom:24px;flex-wrap:wrap;align-items:center;">
+            <div style="display:flex;align-items:center;gap:8px;"><div style="width:14px;height:14px;border-radius:3px;background:rgba(150,150,150,0.4);"></div><span style="font-size:13px;color:#666;">传统模式</span></div>
+            <div style="display:flex;align-items:center;gap:8px;"><div style="width:14px;height:14px;border-radius:3px;background:var(--cyan-main);"></div><span style="font-size:13px;color:#666;">智慧模式</span></div>
+            <div style="display:flex;align-items:center;gap:8px;"><span style="font-size:13px;font-weight:600;color:var(--orange-dark);">%</span><span style="font-size:13px;color:#666;">节约率</span></div>
+          </div>
+          <div class="bar-item">
+            <div class="bar-label">用工成本</div>
+            <div class="bar-track">
+              <div class="bar-fill-old" style="width:100%;">699,600元/年</div>
+              <div class="bar-fill-new" style="width:45.5%;">318,000元/年</div>
+            </div>
+            <div class="bar-pct">节约55%</div>
+          </div>
+          <div class="bar-item">
+            <div class="bar-label">能耗成本</div>
+            <div class="bar-track">
+              <div class="bar-fill-old" style="width:100%;">120,000元/年</div>
+              <div class="bar-fill-new" style="width:70%;">84,000元/年</div>
+            </div>
+            <div class="bar-pct">节约30%</div>
+          </div>
+          <div class="bar-item">
+            <div class="bar-label">维修物料</div>
+            <div class="bar-track">
+              <div class="bar-fill-old" style="width:100%;">55,000元/年</div>
+              <div class="bar-fill-new" style="width:56.4%;">31,000元/年</div>
+            </div>
+            <div class="bar-pct">节约44%</div>
+          </div>
+          <div class="bar-item">
+            <div class="bar-label">管理运营</div>
+            <div class="bar-track">
+              <div class="bar-fill-old" style="width:100%;">85,000元/年</div>
+              <div class="bar-fill-new" style="width:51.5%;">43,800元/年</div>
+            </div>
+            <div class="bar-pct">节约48%</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-align:center;margin-top:16px;">
+        <span style="font-size:13px;color:#888;">* 数据基于典型100间公寓规模测算，实际效果因楼盘规模和管理方式有所差异</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Forward Value -->
+  <section class="section section-alt" id="ops-forward">
+    <div class="container">
+      <div style="max-width:800px;margin:0 auto;text-align:center;">
+        <span class="section-tag">前瞻价值</span>
+        <h2 class="section-title">您的楼宇不仅是资产，<br>更是<span class="cyan">未来人形机器人数据产业链的一环</span></h2>
+        <p class="section-desc">
+          部署Space Cube的楼宇，将积累宝贵的空间行为数据。这些数据是训练人形机器人的关键资源。未来，您不仅是楼宇业主，更是具身智能产业的数据伙伴。
+        </p>
+        <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:32px;">
+          <a class="btn btn-orange" onclick="showPage(&#39;about&#39;);setTimeout(()=&gt;scrollToSection(&#39;forward&#39;),300)">了解我们的技术远景 →</a>
+          <a class="btn btn-cyan" onclick="showPage(&#39;showroom&#39;)">立即预约方案演示 →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="nav-logo" style="margin-bottom:16px;">
+            <img src="./assets/images/logo_transparent.png" alt="EaseLiving AI" class="logo-img" style="height:56px;">
+            <div class="logo-text">
+              <span class="logo-cn">居易人工智能</span>
+              <span class="logo-en">EaseLiving AI</span>
+            </div>
+          </div>
+          <p class="footer-brand-desc">智慧栖居，舒适生活</p>
+        </div>
+        <div>
+          <div class="footer-col-title">产品</div>
+          <span class="footer-col-link" onclick="showPage(&#39;products&#39;)">Space Cube</span>
+          <span class="footer-col-link" onclick="showPage(&#39;products&#39;)">空间智联 Box</span>
+          <span class="footer-col-link" onclick="showPage(&#39;products&#39;)">社区智联 Box</span>
+          <span class="footer-col-link" onclick="showPage(&#39;products&#39;)">机器人交互 Box</span>
+        </div>
+        <div>
+          <div class="footer-col-title">解决方案</div>
+          <span class="footer-col-link" onclick="showPage(&#39;community&#39;)">智慧社区</span>
+          <span class="footer-col-link" onclick="showPage(&#39;operations&#39;)">智慧运营</span>
+          <span class="footer-col-link" onclick="showPage(&#39;showroom&#39;)">商务合作</span>
+        </div>
+        <div>
+          <div class="footer-col-title">关于</div>
+          <span class="footer-col-link" onclick="showPage(&#39;about&#39;)">公司介绍</span>
+          <span class="footer-col-link" onclick="showPage(&#39;about&#39;)">品牌故事</span>
+          <span class="footer-col-link" onclick="showPage(&#39;showroom&#39;)">媒体中心</span>
+          <span class="footer-col-link" onclick="showPage(&#39;showroom&#39;)">加入我们</span>
+        </div>
+      </div>
+      <div class="footer-bottom-links">
+        <a>隐私政策</a>|<a>使用条款</a>|<a>联系我们</a>
+      </div>
+      <div class="footer-bottom">© 2026 居易人工智能有限公司 保留所有权利</div>
+    </div>
+  </footer>
+</div>
+
+
+<!-- ===================================================
+     PAGE 5: SHOWROOM
+     =================================================== -->
+<div id="showroom" class="page-section">
+  <div class="showroom-hero">
+    <div class="container" style="position:relative;z-index:1;">
+      <h1 class="section-title" style="color:white;">
+        亲身体验，<span class="cyan">如何让您的楼宇更智慧</span>
+      </h1>
+      <p class="section-desc" style="margin-top:16px;">期待与您携手，共创智慧人居新未来</p>
+    </div>
+  </div>
+
+  <!-- Gallery + Info -->
+  <section class="section section-alt">
+    <div class="container">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start;margin-bottom:48px;" class="showroom-info-wrap">
+        <div>
+          <span class="section-tag">展厅介绍</span>
+          <h2 class="section-title" style="margin-bottom:20px;"><span class="cyan">Space Cube</span> 实景体验中心</h2>
+          <div style="display:flex;flex-direction:column;gap:14px;margin-bottom:28px;">
+            <div style="display:flex;align-items:center;gap:14px;padding:14px 18px;background:white;border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,0.05);">
+              <span style="font-size:22px;">📍</span>
+              <div><div style="font-size:13px;color:#888;">展厅地址</div><div style="font-weight:600;color:var(--text-dark);">广州市 · 具体地址以预约确认为准</div></div>
+            </div>
+            <div style="display:flex;align-items:center;gap:14px;padding:14px 18px;background:white;border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,0.05);">
+              <span style="font-size:22px;">📐</span>
+              <div><div style="font-size:13px;color:#888;">展厅面积</div><div style="font-weight:600;color:var(--text-dark);">50-100㎡ 实景智慧房屋</div></div>
+            </div>
+            <div style="display:flex;align-items:center;gap:14px;padding:14px 18px;background:white;border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,0.05);">
+              <span style="font-size:22px;">🕐</span>
+              <div><div style="font-size:13px;color:#888;">开放时间</div><div style="font-weight:600;color:var(--text-dark);">每日 10:00–18:00</div></div>
+            </div>
+            <div style="display:flex;align-items:center;gap:14px;padding:14px 18px;background:white;border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,0.05);">
+              <span style="font-size:22px;">✨</span>
+              <div><div style="font-size:13px;color:#888;">展示内容</div><div style="font-weight:600;color:var(--text-dark);">三大盒子实景联动 + 智慧生活场景沉浸体验</div></div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="showroom-gallery">
+            <img src="./assets/images/content_img08.png" style="width:100%; object-fit:cover; border-radius:12px; display:block; height:400px;" alt="" />
+              
+            <div class="showroom-gallery-side">
+              <img src="./assets/images/content_img09.png" style="width:100%; object-fit:cover; border-radius:12px; display:block; height:192px;" alt="" />
+              
+              <img src="./assets/images/content_img10.png" style="width:100%; object-fit:cover; border-radius:12px; display:block; height:192px;" alt="" />
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Booking Form -->
+  <section class="section">
+    <div class="container" style="max-width:800px;">
+      <div style="text-align:center;">
+        <span class="section-tag">商务合作</span>
+        <h2 class="section-title" style="margin-bottom:32px;">让您的楼宇成为智慧社区</h2>
+      </div>
+      <div class="form-wrap">
+        <div class="form-subtitle">填写以下信息，开启我们的相遇</div>
+        <form id="bookingForm" onsubmit="submitForm(event)">
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="form-label">姓名<span class="required">*</span></label>
+              <input type="text" class="form-input" placeholder="请输入您的姓名" required="">
+            </div>
+            <div class="form-group">
+              <label class="form-label">手机号<span class="required">*</span></label>
+              <input type="tel" class="form-input" placeholder="请输入手机号" required="">
+            </div>
+            <div class="form-group">
+              <label class="form-label">公司 / 楼宇物业公司<span class="required">*</span></label>
+              <input type="text" class="form-input" placeholder="请输入公司名称" required="">
+            </div>
+            <div class="form-group">
+              <label class="form-label">楼宇规模</label>
+              <select class="form-select">
+                <option value="">请选择楼宇规模</option>
+                <option value="small">&lt;50间</option>
+                <option value="medium">50-200间</option>
+                <option value="large">&gt;200间</option>
+              </select>
+            </div>
+            <div class="form-group full">
+              <label class="form-label">您最关心的方向</label>
+              <select class="form-select">
+                <option value="">请选择您最关心的方向</option>
+                <option value="cost">成本节约</option>
+                <option value="experience">租户体验</option>
+                <option value="profit">盈利模式</option>
+                <option value="tech">技术方案</option>
+                <option value="robot">机器人方向</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-submit">
+            <button type="submit" class="btn btn-orange" style="width:100%;justify-content:center;padding:16px;">点击相遇</button>
+          </div>
+          <p class="form-note">* 提交后，我们将尽快与您联系</p>
+          <div class="success-msg" id="successMsg">
+            ✅ 感谢您的相遇！我们将尽快与您联系，开启智慧社区的新篇章。
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+
+
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="nav-logo" style="margin-bottom:16px;">
+            <img src="./assets/images/logo_transparent.png" alt="EaseLiving AI" class="logo-img" style="height:56px;">
+            <div class="logo-text">
+              <span class="logo-cn">居易人工智能</span>
+              <span class="logo-en">EaseLiving AI</span>
+            </div>
+          </div>
+          <p class="footer-brand-desc">智慧栖居，舒适生活</p>
+        </div>
+        <div>
+          <div class="footer-col-title">产品</div>
+          <span class="footer-col-link" onclick="showPage(&#39;products&#39;)">Space Cube</span>
+          <span class="footer-col-link" onclick="showPage(&#39;products&#39;)">空间智联 Box</span>
+          <span class="footer-col-link" onclick="showPage(&#39;products&#39;)">社区智联 Box</span>
+          <span class="footer-col-link" onclick="showPage(&#39;products&#39;)">机器人交互 Box</span>
+        </div>
+        <div>
+          <div class="footer-col-title">解决方案</div>
+          <span class="footer-col-link" onclick="showPage(&#39;community&#39;)">智慧社区</span>
+          <span class="footer-col-link" onclick="showPage(&#39;operations&#39;)">智慧运营</span>
+          <span class="footer-col-link" onclick="showPage(&#39;showroom&#39;)">商务合作</span>
+        </div>
+        <div>
+          <div class="footer-col-title">关于</div>
+          <span class="footer-col-link" onclick="showPage(&#39;about&#39;)">公司介绍</span>
+          <span class="footer-col-link" onclick="showPage(&#39;about&#39;)">品牌故事</span>
+          <span class="footer-col-link" onclick="showPage(&#39;showroom&#39;)">媒体中心</span>
+          <span class="footer-col-link" onclick="showPage(&#39;showroom&#39;)">加入我们</span>
+        </div>
+      </div>
+      <div class="footer-bottom-links">
+        <a>隐私政策</a>|<a>使用条款</a>|<a>联系我们</a>
+      </div>
+      <div class="footer-bottom">© 2026 居易人工智能有限公司 保留所有权利</div>
+    </div>
+  </footer>
+</div>
+
+
+<!-- ===================================================
+     PAGE 6: ABOUT
+     =================================================== -->
+<div id="about" class="page-section">
+  <!-- Hero -->
+  <div class="about-hero">
+    <div class="container" style="position:relative;z-index:1;">
+      <h1 class="section-title">让每一栋楼，都变成智慧社区；<br><span class="cyan">让每一个空间，都学会思考</span></h1>
+      <div class="slogan">智慧栖居，舒适生活</div>
+      <p class="section-desc">
+        我们是一家"空间智能操作系统"公司——通过自研的AI智能设备Space Cube（空间智能体Box），为建筑提供从室内到社区的多场景AI智能应用方案，致力于打造科技服务于人、舒适宜居的AI智慧社区。
+      </p>
+    </div>
+  </div>
+
+  <!-- Brand Story -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="story-wrap">
+        <div>
+          <span class="section-tag">品牌故事</span>
+          <h2 class="section-title"><span class="cyan">"居易"</span>的由来</h2>
+          <div class="story-quote">
+            "君子居易以俟命"<br>——《礼记·中庸》
+          </div>
+          <p style="font-size:15px;color:var(--text-dark);line-height:1.9;margin-bottom:20px;">
+            "居易"源于《礼记·中庸》中的"君子居易以俟命"，既有深厚的文化底蕴，又巧妙融入了"居住"和"容易/便捷"的现代语义。
+          </p>
+          <p style="font-size:15px;color:var(--text-dark);line-height:1.9;">
+            <strong>"居易"</strong>即"让居住变得更简单、更智慧，并能从容应对变化。"
+          </p>
+          <div style="margin-top:24px;display:flex;gap:16px;flex-wrap:wrap;">
+            <div style="padding:12px 20px;background:rgba(0,180,216,0.06);border-radius:10px;border:1px solid rgba(0,180,216,0.15);">
+              <div style="font-size:13px;color:#888;margin-bottom:4px;">中文品牌名</div>
+              <div style="font-size:18px;font-weight:800;color:var(--cyan-main);">居易人工智能</div>
+            </div>
+            <div style="padding:12px 20px;background:rgba(244,162,97,0.06);border-radius:10px;border:1px solid rgba(244,162,97,0.2);">
+              <div style="font-size:13px;color:#888;margin-bottom:4px;">英文品牌名</div>
+              <div style="font-size:18px;font-weight:800;color:var(--orange-main);">EaseLiving AI</div>
+            </div>
+          </div>
+        </div>
+        <img src="./assets/images/content_img11.png" style="width:100%; object-fit:cover; border-radius:12px; display:block; height:400px;" alt="" />
+        
+      </div>
+    </div>
+  </section>
+
+  <!-- Policy Alignment -->
+  <section class="section">
+    <div class="container" style="max-width:900px;margin:0 auto;">
+      <div class="text-center" style="margin-bottom:32px;">
+        <span class="section-tag">政策契合</span>
+        <h2 class="section-title">我们响应国家战略，<br>以<span class="cyan">AI空间智能体</span>重塑服务业</h2>
+      </div>
+      <div class="policy-wrap">
+        <p style="font-size:15px;color:var(--text-dark);line-height:1.9;margin-bottom:16px;">
+          李强总理在2026年全国服务业大会上强调，要顺应人口结构变化、消费结构升级、产业结构转型三大趋势，提升服务业的<strong>数智化、标准化、融合化水平</strong>，壮大科技服务。
+        </p>
+        <div class="policy-quote">
+          "顺应人口结构变化、消费结构升级、产业结构转型三大趋势，提升服务业的数智化、标准化、融合化水平，壮大科技服务。"<br>
+          <span style="font-size:13px;color:#888;">——李强总理，2026年全国服务业大会</span>
+        </div>
+        <p style="font-size:15px;color:var(--text-dark);line-height:1.9;margin-top:16px;">
+          Space Cube空间智能体三大盒子通过<strong>感知、交互、互通、互助</strong>，构建从室内到社区、从人到机器的全场景智能服务闭环，是"壮大科技服务"的具体产品化实践。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Robot Forward -->
+  <section class="section section-alt" id="forward">
+    <div class="container">
+      <div class="robot-wrap">
+        <img src="./assets/images/content_img12.png" style="width:100%; object-fit:cover; border-radius:12px; display:block; height:420px;" alt="" />
+        
+        <div>
+          <span class="section-tag">前瞻布局</span>
+          <h2 class="section-title">我们为人形机器人<br><span class="cyan">进入家庭积累数据</span></h2>
+          <p style="font-size:15px;color:#666;line-height:1.9;margin-bottom:28px;">
+            我们是人形机器人进入家庭前的"数据训练场"和"环境预埋基础设施"。三者形成强大的空间智能体，成为具身智能机器人的"操作系统"和"数据底座"。
+          </p>
+          <div class="robot-boxes">
+            <div class="robot-box-item">
+              <div class="robot-box-item-icon">🏠</div>
+              <div>
+                <div class="robot-box-item-title">空间智联Box</div>
+                <div class="robot-box-item-desc">为家用机器人提供"懂家"的数据训练场，积累家庭空间行为数据</div>
+              </div>
+            </div>
+            <div class="robot-box-item">
+              <div class="robot-box-item-icon">🏢</div>
+              <div>
+                <div class="robot-box-item-title">社区智联Box</div>
+                <div class="robot-box-item-desc">为社区服务机器人提供"懂社区"的运行基础设施，构建社区空间认知</div>
+              </div>
+            </div>
+            <div class="robot-box-item">
+              <div class="robot-box-item-icon">🤖</div>
+              <div>
+                <div class="robot-box-item-title">机器人交互Box</div>
+                <div class="robot-box-item-desc">作为人形机器人进入家庭的调度枢纽，积累机器人在真实场景中的行为数据</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========== JOIN US =========== -->
+  <!-- 
+   * 如何替换内容：
+   * 1. 按钮链接：修改 href="#"
+   * 2. HR邮箱：修改 mailto:hr@easeliving-ai.com
+   * 3. 右侧图片：将 .join-us-image 改为实际图片背景
+  -->
+  <section class="join-us-section">
+    <div class="join-us-card">
+      <div class="join-us-content">
+        <span class="join-us-tag">智同道合</span>
+        <h2 class="join-us-title">加入我们</h2>
+        <p class="join-us-desc">
+          我们在寻找热爱科技、相信"科技服务于人"的伙伴。在这里，你将获得前沿技术的实践机会，享受扁平高效的团队文化，与行业精英共同成长。加入我们，一起用AI重新定义居住体验。
+        </p>
+        <!-- 修改href为实际招聘链接，如 https://www.zhaopin.com/company/xxx -->
+        <a href="#" class="join-us-btn">查看开放职位</a>
+        <!-- 修改邮箱为实际HR邮箱 -->
+        <p class="join-us-email">简历投递：<a href="mailto:hr@easeliving-ai.com">hr@easeliving-ai.com</a></p>
+      </div>
+      <div class="join-us-image">
+        <img src="./assets/images/join_us_banner.png" alt="加入我们" style="width:100%;height:100%;object-fit:cover;">
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section" style="background:linear-gradient(135deg,#0a2942,#0a3d5e);">
+    <div class="container text-center">
+      <h2 class="section-title" style="color:white;margin-bottom:12px;">准备好了解更多了吗？</h2>
+      <p style="font-size:16px;color:rgba(255,255,255,0.7);margin-bottom:36px;">从产品、场景到体验，我们随时为您准备好了</p>
+      <div class="about-cta-buttons">
+        <a class="btn btn-orange" onclick="showPage(&#39;products&#39;)">了解 Space Cube →</a>
+        <a class="btn btn-orange" onclick="showPage(&#39;community&#39;)">体验智慧场景 →</a>
+        <a class="btn btn-orange" onclick="showPage(&#39;showroom&#39;)">共启合作远景 →</a>
+      </div>
+    </div>
+  </section>
+
+
+
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="nav-logo" style="margin-bottom:16px;">
+            <img src="./assets/images/logo_transparent.png" alt="EaseLiving AI" class="logo-img" style="height:56px;">
+            <div class="logo-text">
+              <span class="logo-cn">居易人工智能</span>
+              <span class="logo-en">EaseLiving AI</span>
+            </div>
+          </div>
+          <p class="footer-brand-desc">智慧栖居，舒适生活</p>
+        </div>
+        <div>
+          <div class="footer-col-title">产品</div>
+          <span class="footer-col-link" onclick="showPage(&#39;products&#39;)">Space Cube</span>
+          <span class="footer-col-link" onclick="showPage(&#39;products&#39;)">空间智联 Box</span>
+          <span class="footer-col-link" onclick="showPage(&#39;products&#39;)">社区智联 Box</span>
+          <span class="footer-col-link" onclick="showPage(&#39;products&#39;)">机器人交互 Box</span>
+        </div>
+        <div>
+          <div class="footer-col-title">解决方案</div>
+          <span class="footer-col-link" onclick="showPage(&#39;community&#39;)">智慧社区</span>
+          <span class="footer-col-link" onclick="showPage(&#39;operations&#39;)">智慧运营</span>
+          <span class="footer-col-link" onclick="showPage(&#39;showroom&#39;)">商务合作</span>
+        </div>
+        <div>
+          <div class="footer-col-title">关于</div>
+          <span class="footer-col-link" onclick="showPage(&#39;about&#39;)">公司介绍</span>
+          <span class="footer-col-link" onclick="showPage(&#39;about&#39;)">品牌故事</span>
+          <span class="footer-col-link" onclick="showPage(&#39;showroom&#39;)">媒体中心</span>
+          <span class="footer-col-link" onclick="showPage(&#39;showroom&#39;)">加入我们</span>
+        </div>
+      </div>
+      <div class="footer-bottom-links">
+        <a>隐私政策</a>|<a>使用条款</a>|<a>联系我们</a>
+      </div>
+      <div class="footer-bottom">© 2026 居易人工智能有限公司 保留所有权利 &nbsp;|&nbsp; EaseLiving AI Co., Ltd.</div>
+    </div>
+  </footer>
+</div>
+
+<!-- Scroll to top -->
+<div class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:&#39;smooth&#39;})">↑</div>
+
+<script>
+// =========== Page Navigation ===========
+let currentPage = 'home';
+
+function showPage(pageId) {
+  // Hide all
+  document.querySelectorAll('.page-section').forEach(p => p.classList.remove('active'));
+  // Show target
+  const target = document.getElementById(pageId);
+  if (target) {
+    target.classList.add('active');
+    currentPage = pageId;
+  }
+  // Update nav active state
+  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+  const navEl = document.getElementById('nav-' + pageId);
+  if (navEl) navEl.classList.add('active');
+  // Scroll to top
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function scrollToSection(id) {
+  const el = document.getElementById(id);
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// =========== Banner Slider ===========
+let currentSlide = 0;
+let slideInterval;
+
+function goToSlide(n) {
+  const slides = document.querySelectorAll('.banner-slide');
+  const dots = document.querySelectorAll('.banner-dot');
+  slides.forEach(s => s.classList.remove('active'));
+  dots.forEach(d => d.classList.remove('active'));
+  currentSlide = (n + slides.length) % slides.length;
+  slides[currentSlide].classList.add('active');
+  dots[currentSlide].classList.add('active');
+}
+
+function nextSlide() { goToSlide(currentSlide + 1); }
+
+function startSlider() {
+  slideInterval = setInterval(nextSlide, 5000);
+}
+
+document.getElementById('bannerSlider').addEventListener('mouseenter', () => clearInterval(slideInterval));
+document.getElementById('bannerSlider').addEventListener('mouseleave', () => {
+  clearInterval(slideInterval);
+  startSlider();
+});
+
+startSlider();
+
+// =========== Hamburger ===========
+function toggleMobile() {
+  const menu = document.getElementById('mobileMenu');
+  menu.classList.toggle('open');
+}
+function closeMobile() {
+  document.getElementById('mobileMenu').classList.remove('open');
+}
+
+// =========== Scroll to top button ===========
+window.addEventListener('scroll', () => {
+  const btn = document.getElementById('scrollTop');
+  btn.classList.toggle('visible', window.scrollY > 400);
+});
+
+// =========== Form Submit ===========
+function submitForm(e) {
+  e.preventDefault();
+  const form = document.getElementById('bookingForm');
+  const msg = document.getElementById('successMsg');
+  form.querySelectorAll('input,select,textarea,button').forEach(el => el.disabled = true);
+  msg.style.display = 'block';
+  msg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+// =========== Navbar active on init ===========
+document.getElementById('nav-home').classList.add('active');
+</script>
+
+
+</body></html>
