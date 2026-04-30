@@ -185,19 +185,19 @@
     background: linear-gradient(90deg, rgba(2,24,40,0.78) 0%, rgba(2,24,40,0.32) 60%, transparent 100%);
   }
   .banner-bg-1 {
-    background-image: url("./assets/images/img02.png"), linear-gradient(135deg, rgba(10,41,66,0.75) 0%, rgba(10,61,94,0.75) 40%, rgba(8,90,122,0.75) 100%);
+    background-image: url("./assets/images/banner_home_01.png"), linear-gradient(135deg, rgba(10,41,66,0.75) 0%, rgba(10,61,94,0.75) 40%, rgba(8,90,122,0.75) 100%);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
   }
   .banner-bg-2 {
-    background-image: url("./assets/images/img03.png"), linear-gradient(135deg, rgba(13,33,55,0.75) 0%, rgba(13,58,86,0.75) 40%, rgba(12,82,114,0.75) 100%);
+    background-image: url("./assets/images/banner_home_02.png"), linear-gradient(135deg, rgba(13,33,55,0.75) 0%, rgba(13,58,86,0.75) 40%, rgba(12,82,114,0.75) 100%);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
   }
   .banner-bg-3 {
-    background-image: url("./assets/images/img04.png"), linear-gradient(135deg, rgba(15,31,53,0.75) 0%, rgba(16,45,79,0.75) 40%, rgba(12,63,104,0.75) 100%);
+    background-image: url("./assets/images/banner_home_03.png"), linear-gradient(135deg, rgba(15,31,53,0.75) 0%, rgba(16,45,79,0.75) 40%, rgba(12,63,104,0.75) 100%);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -657,15 +657,115 @@
     margin: 24px 0; line-height: 1.5;
   }
 
-  .policy-wrap {
-    background: linear-gradient(135deg, rgba(0,180,216,0.04), rgba(0,119,182,0.02));
-    border: 1px solid rgba(0,180,216,0.15);
-    border-radius: 20px; padding: 40px; 
+  /* 引用区（精简版） */
+  .policy-quote-bar {
+    background: white;
+    border-radius: 16px;
+    padding: 28px 36px;
+    box-shadow: var(--shadow);
+    margin-bottom: 48px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
   }
-  .policy-quote {
-    background: rgba(0,180,216,0.06); border-left: 4px solid var(--cyan-main);
-    border-radius: 0 12px 12px 0; padding: 16px 20px; margin: 16px 0;
-    font-size: 15px; color: var(--text-dark); font-style: italic; line-height: 1.8;
+  .policy-quote-icon {
+    width: 48px; height: 48px;
+    border-radius: 12px;
+    background: rgba(0,180,216,0.08);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .policy-quote-text {
+    font-size: 15px;
+    color: var(--text-dark);
+    line-height: 1.8;
+    font-style: italic;
+  }
+  .policy-quote-source {
+    font-size: 13px;
+    color: #888;
+    margin-top: 6px;
+    font-style: normal;
+  }
+
+  /* 三大趋势卡片 */
+  .trend-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-bottom: 48px;
+  }
+  .trend-card {
+    background: white;
+    border-radius: 16px;
+    padding: 36px 28px;
+    box-shadow: var(--shadow);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .trend-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--cyan-main), var(--cyan-dark));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  .trend-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-hover);
+  }
+  .trend-card:hover::before {
+    opacity: 1;
+  }
+  .trend-icon-wrap {
+    width: 72px; height: 72px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(0,180,216,0.1), rgba(0,119,182,0.15));
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 20px;
+    transition: transform 0.3s ease;
+  }
+  .trend-card:hover .trend-icon-wrap {
+    transform: scale(1.08);
+  }
+  .trend-name {
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--text-dark);
+    margin-bottom: 10px;
+  }
+  .trend-desc {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.7;
+  }
+
+  /* 底部总结 */
+  .policy-summary {
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 24px 40px;
+  }
+  .policy-summary p {
+    font-size: 16px;
+    color: var(--text-dark);
+    line-height: 1.8;
+  }
+  .policy-summary strong {
+    color: var(--cyan-dark);
+  }
+
+  @media (max-width: 900px) {
+    .trend-grid { grid-template-columns: 1fr; max-width: 480px; margin-left: auto; margin-right: auto; }
+    .policy-quote-bar { flex-direction: column; text-align: center; padding: 24px; }
   }
 
   .robot-wrap {
@@ -897,6 +997,196 @@
     .stats-grid { grid-template-columns: 1fr 1fr; }
     .banner-slider { height: 420px; }
   }
+
+  /* =========== OPERATIONS: Pain Point Cards (Overlay Reveal - 方案A) =========== */
+  .pain-section { padding: 100px 24px; background: var(--bg-light); }
+  .pain-section-header { text-align: center; margin-bottom: 60px; }
+  .pain-section-header .section-desc { margin-left: auto; margin-right: auto; }
+
+  .pain-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .pain-card {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    height: 320px;
+    box-shadow: var(--shadow);
+    cursor: pointer;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+  }
+  .pain-card:hover {
+    box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+    transform: translateY(-4px);
+  }
+  .pain-card-front, .pain-card-overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease;
+  }
+  .pain-card-front {
+    background: linear-gradient(135deg, #f0f0f3 0%, #e8e8ec 100%);
+    z-index: 1;
+  }
+  .pain-card-overlay {
+    background: linear-gradient(135deg, var(--cyan-main) 0%, var(--cyan-dark) 100%);
+    color: white;
+    z-index: 2;
+    transform: translateY(100%);
+  }
+  .pain-card:hover .pain-card-overlay {
+    transform: translateY(0);
+  }
+  .pain-card:hover .pain-card-front {
+    transform: translateY(-20%);
+    opacity: 0.3;
+  }
+
+  .pc-number {
+    width: 44px; height: 44px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; font-weight: 900;
+    margin-bottom: 12px;
+  }
+  .pain-card-front .pc-number { background: rgba(0,0,0,0.06); color: #999; }
+  .pain-card-overlay .pc-number { background: rgba(255,255,255,0.15); color: white; }
+
+  .pc-label {
+    display: inline-block;
+    font-size: 11px; font-weight: 700; letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 4px 10px; border-radius: 20px;
+    margin-bottom: 12px;
+    width: fit-content;
+  }
+  .pain-card-front .pc-label { background: rgba(0,0,0,0.06); color: #888; }
+  .pain-card-overlay .pc-label { background: rgba(255,255,255,0.15); color: rgba(255,255,255,0.9); }
+
+  .pc-title {
+    font-size: 20px; font-weight: 800;
+    margin-bottom: 12px; line-height: 1.4;
+  }
+  .pain-card-front .pc-title { color: var(--text-dark); }
+  .pain-card-overlay .pc-title { color: white; }
+
+  .pc-desc {
+    font-size: 14px; line-height: 1.8;
+    flex: 1;
+  }
+  .pain-card-front .pc-desc { color: #555; }
+  .pain-card-overlay .pc-desc { color: rgba(255,255,255,0.9); }
+
+  .pc-tags {
+    display: flex; gap: 8px; flex-wrap: wrap; margin-top: 16px;
+  }
+  .pc-tag {
+    padding: 5px 12px; border-radius: 20px; font-size: 12px; font-weight: 600;
+    background: rgba(255,255,255,0.15); color: rgba(255,255,255,0.95);
+    border: 1px solid rgba(255,255,255,0.2);
+  }
+
+  @media (max-width: 1024px) {
+    .pain-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 768px) {
+    .pain-grid { grid-template-columns: 1fr; }
+    .pain-card { height: 280px; }
+    .pain-section { padding: 60px 20px; }
+  }
+
+  /* =========== OPERATIONS: Deployment Path (New) =========== */
+  .path-section { padding: 100px 24px; background: white; }
+  .path-section-header { text-align: center; margin-bottom: 60px; }
+  .path-section-header .section-desc { margin-left: auto; margin-right: auto; }
+
+  .path-timeline {
+    max-width: 1200px; margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    position: relative;
+  }
+  .path-timeline::before {
+    content: '';
+    position: absolute;
+    top: 28px; left: 10%; right: 10%;
+    height: 2px;
+    background: linear-gradient(90deg, var(--cyan-main), var(--cyan-dark));
+    z-index: 0;
+  }
+
+  .path-step {
+    flex: 1;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    padding: 0 12px;
+  }
+  .path-step-circle {
+    width: 56px; height: 56px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--cyan-main), var(--cyan-dark));
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 20px;
+    font-size: 20px; font-weight: 900; color: white;
+    box-shadow: 0 4px 16px rgba(0,180,216,0.35);
+  }
+  .path-step-title {
+    font-size: 16px; font-weight: 800; color: var(--text-dark);
+    margin-bottom: 6px;
+  }
+  .path-step-time {
+    font-size: 12px; font-weight: 700; color: var(--cyan-main);
+    margin-bottom: 10px;
+  }
+  .path-step-desc {
+    font-size: 13px; color: #888; line-height: 1.7;
+    max-width: 180px; margin: 0 auto;
+  }
+
+  .path-guarantee {
+    max-width: 1200px; margin: 60px auto 0;
+    display: flex; gap: 32px; justify-content: center; flex-wrap: wrap;
+  }
+  .path-guarantee-item {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 14px; color: #666;
+  }
+  .path-guarantee-item::before {
+    content: '✓'; width: 22px; height: 22px; border-radius: 50%;
+    background: rgba(0,180,216,0.1); color: var(--cyan-main);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 700; flex-shrink: 0;
+  }
+
+  /* =========== OPERATIONS: Forward Value (New) =========== */
+  .forward-section {
+    padding: 100px 24px;
+    background: linear-gradient(135deg, #0a1929 0%, #0d2d45 60%, #0a2438 100%);
+    text-align: center;
+    position: relative; overflow: hidden;
+  }
+  .forward-section .section-title { color: white; margin-bottom: 20px; }
+  .forward-section .section-desc { color: rgba(255,255,255,0.75); margin: 0 auto 40px; }
+
+  @media (max-width: 900px) {
+    .pain-row { grid-template-columns: 1fr; }
+    .path-timeline { flex-direction: column; gap: 40px; }
+    .path-timeline::before { display: none; }
+    .path-step { text-align: left; display: flex; gap: 20px; align-items: flex-start; }
+    .path-step-circle { margin: 0; flex-shrink: 0; }
+  }
+  @media (max-width: 600px) {
+    .pain-section { padding: 60px 20px; }
+    .path-section { padding: 60px 20px; }
+    .forward-section { padding: 60px 20px; }
+  }
 </style>
 </head>
 <body>
@@ -1020,7 +1310,7 @@
           </p>
           <a class="btn btn-orange" onclick="showPage(&#39;products&#39;)">了解我们的产品 →</a>
         </div>
-        <img src="./assets/images/content_img01.png" style="width:100%; object-fit:cover; border-radius:12px; display:block; height:360px;" alt="" />
+        <img src="./assets/images/公司介绍(1).png" style="width:100%; object-fit:cover; border-radius:12px; display:block; height:360px;" alt="Space Cube 空间智能体" />
         
       </div>
     </div>
@@ -1119,14 +1409,14 @@
     </div>
 
     <!-- News Grid -->
-    <div class="news-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px;">
+    <div class="news-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; grid-auto-rows: 1fr;">
 
       <!-- News Card 1: Image + Text -->
-      <article class="news-card" style="background: white; border-radius: 16px; overflow: hidden; box-shadow: var(--shadow); transition: transform 0.3s;">
+      <article class="news-card" style="background: white; border-radius: 16px; overflow: hidden; box-shadow: var(--shadow); transition: transform 0.3s; display: flex; flex-direction: column;">
         <div class="news-image" style="height: 200px; overflow: hidden;">
           <img src="./assets/images/content_img01.png" alt="Space Cube 发布" style="width: 100%; height: 100%; object-fit: cover;">
         </div>
-        <div class="news-content" style="padding: 24px;">
+        <div class="news-content" style="padding: 24px; flex: 1; display: flex; flex-direction: column;">
           <div class="news-meta" style="display: flex; gap: 12px; margin-bottom: 12px;">
             <span class="news-tag" style="background: rgba(0,180,216,0.1); color: var(--cyan-main); padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600;">产品发布</span>
             <span class="news-date" style="color: #999; font-size: 12px;">2026年4月</span>
@@ -1137,14 +1427,14 @@
           <p class="news-excerpt" style="color: #666; font-size: 14px; line-height: 1.6; margin-bottom: 16px;">
             居易人工智能正式发布 Space Cube 空间智能体，为智慧社区提供全新的 AI 操作系统解决方案...
           </p>
-          <a href="#" class="news-link" style="color: var(--cyan-main); font-size: 14px; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 6px;">
+          <a href="#" class="news-link" style="color: var(--cyan-main); font-size: 14px; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; margin-top: auto;">
             阅读全文 →
           </a>
         </div>
       </article>
 
       <!-- News Card 2: Video Embed -->
-      <article class="news-card" style="background: white; border-radius: 16px; overflow: hidden; box-shadow: var(--shadow); transition: transform 0.3s;">
+      <article class="news-card" style="background: white; border-radius: 16px; overflow: hidden; box-shadow: var(--shadow); transition: transform 0.3s; display: flex; flex-direction: column;">
         <div class="news-video" style="height: 200px; background: var(--text-dark); display: flex; align-items: center; justify-content: center; position: relative;">
           <video poster="./assets/images/content_img02.png" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.7;">
             <source src="#" type="video/mp4">
@@ -1156,7 +1446,7 @@
             <p style="color: white; font-size: 12px; margin-top: 8px;">观看演示视频</p>
           </div>
         </div>
-        <div class="news-content" style="padding: 24px;">
+        <div class="news-content" style="padding: 24px; flex: 1; display: flex; flex-direction: column;">
           <div class="news-meta" style="display: flex; gap: 12px; margin-bottom: 12px;">
             <span class="news-tag" style="background: rgba(244,162,97,0.1); color: var(--orange-main); padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600;">视频演示</span>
             <span class="news-date" style="color: #999; font-size: 12px;">2026年4月</span>
@@ -1167,15 +1457,18 @@
           <p class="news-excerpt" style="color: #666; font-size: 14px; line-height: 1.6; margin-bottom: 16px;">
             通过视频了解 Space Cube 如何实现室内外全场景智能联动...
           </p>
-          <a href="#" class="news-link" style="color: var(--cyan-main); font-size: 14px; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 6px;">
+          <a href="#" class="news-link" style="color: var(--cyan-main); font-size: 14px; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; margin-top: auto;">
             观看视频 →
           </a>
         </div>
       </article>
 
-      <!-- News Card 3: Text + Links -->
-      <article class="news-card" style="background: white; border-radius: 16px; overflow: hidden; box-shadow: var(--shadow); transition: transform 0.3s;">
-        <div class="news-content" style="padding: 24px;">
+      <!-- News Card 3: Media Report -->
+      <article class="news-card" style="background: white; border-radius: 16px; overflow: hidden; box-shadow: var(--shadow); transition: transform 0.3s; display: flex; flex-direction: column;">
+        <div class="news-image" style="height: 200px; overflow: hidden;">
+          <img src="./assets/images/content_img03.png" alt="媒体报道" style="width: 100%; height: 100%; object-fit: cover;">
+        </div>
+        <div class="news-content" style="padding: 24px; flex: 1; display: flex; flex-direction: column;">
           <div class="news-meta" style="display: flex; gap: 12px; margin-bottom: 12px;">
             <span class="news-tag" style="background: rgba(0,180,216,0.1); color: var(--cyan-main); padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600;">媒体报道</span>
             <span class="news-date" style="color: #999; font-size: 12px;">2026年3月</span>
@@ -1186,15 +1479,9 @@
           <p class="news-excerpt" style="color: #666; font-size: 14px; line-height: 1.6; margin-bottom: 16px;">
             居易人工智能宣布完成天使轮融资，将用于 Space Cube 产品研发和市場拓展...
           </p>
-          <div class="news-links" style="border-top: 1px solid #eee; padding-top: 16px; margin-top: 8px;">
-            <p style="font-size: 12px; color: #999; margin-bottom: 8px;">相关链接：</p>
-            <a href="https://github.com/loonmama/1" target="_blank" style="color: var(--cyan-main); font-size: 13px; text-decoration: none; display: block; margin-bottom: 4px;">
-              → 公司官网
-            </a>
-            <a href="#" style="color: var(--cyan-main); font-size: 13px; text-decoration: none; display: block;">
-              → 新闻详情
-            </a>
-          </div>
+          <a href="#" class="news-link" style="color: var(--cyan-main); font-size: 14px; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; margin-top: auto;">
+            阅读全文 →
+          </a>
         </div>
       </article>
 
@@ -1576,8 +1863,70 @@
     </div>
   </section>
 
+  <!-- ========== OWNER VALUE BRIDGE (方案B) ========== -->
+  <section style="padding: 100px 24px; background: linear-gradient(135deg, #0a1929 0%, #0d2d45 60%, #0a2438 100%); text-align: center; position: relative; overflow: hidden;">
+    <div style="max-width: 1200px; margin: 0 auto; position: relative; z-index: 1;">
+      <p style="font-size: clamp(18px, 2.5vw, 26px); color: white; font-weight: 700; line-height: 1.6; margin-bottom: 56px; max-width: 800px; margin-left: auto; margin-right: auto;">
+        对租客而言，这是<span style="color: var(--cyan-main);">「住得舒服」</span>；<br>
+        对业主而言，这是<span style="color: var(--orange-main);">「租得出去、收得回来」</span>
+      </p>
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-bottom: 48px;">
+        <div style="text-align: center;">
+          <div style="font-size: 48px; font-weight: 900; color: var(--orange-main); line-height: 1;">↑25<span style="font-size: 24px;">%</span></div>
+          <div style="font-size: 15px; color: rgba(255,255,255,0.8); margin-top: 10px;">续租率提升</div>
+        </div>
+        <div style="text-align: center;">
+          <div style="font-size: 48px; font-weight: 900; color: var(--orange-main); line-height: 1;">↓30<span style="font-size: 24px;">%</span></div>
+          <div style="font-size: 15px; color: rgba(255,255,255,0.8); margin-top: 10px;">获客成本降低</div>
+        </div>
+        <div style="text-align: center;">
+          <div style="font-size: 48px; font-weight: 900; color: var(--orange-main); line-height: 1;">↓80<span style="font-size: 24px;">%</span></div>
+          <div style="font-size: 15px; color: rgba(255,255,255,0.8); margin-top: 10px;">安全投诉降低</div>
+        </div>
+      </div>
+      <a class="btn btn-orange" onclick="showPage(&#39;showroom&#39;)" style="font-size: 16px; padding: 14px 36px;">预约方案演示 →</a>
+    </div>
+  </section>
 
-
+  <!-- ========== TESTIMONIALS (方案二·浅色版) ========== -->
+  <section style="padding: 100px 24px; background: #F8F9FA; position: relative; overflow: hidden;">
+    <div style="max-width: 1200px; margin: 0 auto; position: relative; z-index: 1;">
+      <div style="text-align: center; margin-bottom: 56px;">
+        <span class="section-tag">真实声音</span>
+        <h2 class="section-title" style="margin-top: 12px;">听听他们怎么说</h2>
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 32px;">
+        <!-- Card 1 -->
+        <div style="background: white; border-left: 4px solid var(--cyan-main); border-radius: 0 20px 20px 0; padding: 48px 40px; box-shadow: 0 8px 32px rgba(0,180,216,0.08); position: relative; overflow: hidden; display: flex; flex-direction: column;">
+          <div style="position: absolute; top: 16px; left: 28px; font-size: 96px; line-height: 1; color: rgba(0,180,216,0.1); font-family: Georgia, serif; font-weight: 700; user-select: none;">"</div>
+          <p style="font-size: 19px; color: var(--text-dark); line-height: 1.9; position: relative; z-index: 1; margin-top: 16px; flex: 1;">
+            住了一年，最惊喜的是 Space Cube 真的能"记住"我。下班还没到家空调就调好了，访客来了临时门禁码秒生成，独居时语音喊一声就能呼叫帮助。这种被懂、被照顾的体验，续租根本不需要犹豫。
+          </p>
+          <div style="margin-top: 32px; display: flex; align-items: center; gap: 12px; flex-shrink: 0;">
+            <div style="width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, var(--cyan-main), var(--cyan-dark)); display: flex; align-items: center; justify-content: center; font-size: 16px; color: white; font-weight: 700;">住</div>
+            <div>
+              <div style="font-size: 14px; font-weight: 700; color: var(--text-dark);">Space Cube 社区住户</div>
+              <div style="font-size: 12px; color: #888;">已入住 12 个月</div>
+            </div>
+          </div>
+        </div>
+        <!-- Card 2 -->
+        <div style="background: white; border-left: 4px solid var(--orange-main); border-radius: 0 20px 20px 0; padding: 48px 40px; box-shadow: 0 8px 32px rgba(244,162,97,0.08); position: relative; overflow: hidden; display: flex; flex-direction: column;">
+          <div style="position: absolute; top: 16px; left: 28px; font-size: 96px; line-height: 1; color: rgba(244,162,97,0.1); font-family: Georgia, serif; font-weight: 700; user-select: none;">"</div>
+          <p style="font-size: 19px; color: var(--text-dark); line-height: 1.9; position: relative; z-index: 1; margin-top: 16px; flex: 1;">
+            引入 Space Cube 这半年，变化比预期大得多：社区口碑在年轻租客中传开了，咨询量涨了三成多，入住率从八成一直拉到九成五以上。最让我意外的是续租率，去年还总担心租客到期就走，现在大部分老租户都主动续签，还说要推荐给同事朋友。
+          </p>
+          <div style="margin-top: 32px; display: flex; align-items: center; gap: 12px; flex-shrink: 0;">
+            <div style="width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, var(--orange-main), var(--orange-dark)); display: flex; align-items: center; justify-content: center; font-size: 16px; color: white; font-weight: 700;">运</div>
+            <div>
+              <div style="font-size: 14px; font-weight: 700; color: var(--text-dark);">广州某长租公寓运营总监</div>
+              <div style="font-size: 12px; color: #888;">合作 6 个月</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <footer>
     <div class="footer-inner">
@@ -1630,115 +1979,262 @@
     <div class="ops-hero-bg"></div>
     <div class="container" style="position:relative;z-index:1;">
       <h1 class="section-title" style="color:white;">
-        Space Cube不仅是您的智能管家，<br><span class="cyan">更是您的数字运营总监</span>
+        Space Cube 不仅是您的智能管家，<br><span class="cyan">更是您的数字运营总监</span>
       </h1>
+      <p class="section-desc" style="color:rgba(255,255,255,0.75);margin:16px auto 0;max-width:700px;">
+        专为开发商自持资产、资产管理公司及物业管理企业打造 —— 用 AI 重塑楼宇运营竞争力
+      </p>
     </div>
   </div>
+
+  <!-- Six Pain Points Comparison -->
+  <section class="pain-section">
+    <div class="pain-section-header">
+      <span class="section-tag">运营挑战</span>
+      <h2 class="section-title">楼宇运营的六大挑战，<span class="cyan">Space Cube 逐一破解</span></h2>
+      <p class="section-desc">
+        无论您是开发商、资产方还是物业运营者，这些场景每天都在发生
+      </p>
+    </div>
+
+    <div class="pain-grid">
+
+      <!-- Pain Point 1 -->
+      <div class="pain-card">
+        <div class="pain-card-front">
+          <div class="pc-number">01</div>
+          <span class="pc-label">传统运营模式</span>
+          <h3 class="pc-title">人力成本持续攀升</h3>
+          <p class="pc-desc">保安、管家编制重，流动率高，单人管理半径有限。人力成本占运营支出大头，且随着最低工资标准上调，这块成本只会越来越高，难以压缩。</p>
+        </div>
+        <div class="pain-card-overlay">
+          <div class="pc-number">01</div>
+          <span class="pc-label">Space Cube 解法</span>
+          <h3 class="pc-title">AI 替代重复劳动，释放人力价值</h3>
+          <p class="pc-desc">社区智联 Box 实现 7×24h 自动安防监测，异常秒级预警并智能派单。AI 替代重复性巡检与值守，让有限的人力聚焦于租户服务、品质管控等高价值工作。</p>
+          <div class="pc-tags">
+            <span class="pc-tag">智能安防</span>
+            <span class="pc-tag">自动派单</span>
+            <span class="pc-tag">远程管理</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pain Point 2 -->
+      <div class="pain-card">
+        <div class="pain-card-front">
+          <div class="pc-number">02</div>
+          <span class="pc-label">传统运营模式</span>
+          <h3 class="pc-title">能耗黑洞难以追查</h3>
+          <p class="pc-desc">空置房设备忘关、公区照明长明、异常用电月底才能发现。能耗账单是一笔"糊涂账"，钱花在哪里、哪里可以省，无从得知。</p>
+        </div>
+        <div class="pain-card-overlay">
+          <div class="pc-number">02</div>
+          <span class="pc-label">Space Cube 解法</span>
+          <h3 class="pc-title">实时分项计量，AI 智能调控</h3>
+          <p class="pc-desc">空间智联 Box 实现能耗实时分项计量，AI 自动识别异常用电并远程调控。每一度电都可追溯、可归因、可控制，让能耗从"糊涂账"变成"明白账"。</p>
+          <div class="pc-tags">
+            <span class="pc-tag">实时计量</span>
+            <span class="pc-tag">AI 异常识别</span>
+            <span class="pc-tag">自动调控</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pain Point 3 -->
+      <div class="pain-card">
+        <div class="pain-card-front">
+          <div class="pc-number">03</div>
+          <span class="pc-label">传统运营模式</span>
+          <h3 class="pc-title">设备维修始终被动</h3>
+          <p class="pc-desc">故障靠租户报修，被动响应。小毛病拖成大修，维修成本不可控，租户抱怨不断，物业疲于"救火"，却始终在原地打转。</p>
+        </div>
+        <div class="pain-card-overlay">
+          <div class="pc-number">03</div>
+          <span class="pc-label">Space Cube 解法</span>
+          <h3 class="pc-title">预测性维护，从"救火"变"防火"</h3>
+          <p class="pc-desc">传感器全天候监测设备运行状态，AI 在故障发生前主动预警并生成工单。把维修从"事后补救"变成"事前预防"，成本可控，租户无感。</p>
+          <div class="pc-tags">
+            <span class="pc-tag">预测性维护</span>
+            <span class="pc-tag">主动预警</span>
+            <span class="pc-tag">智能派单</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pain Point 4 -->
+      <div class="pain-card">
+        <div class="pain-card-front">
+          <div class="pc-number">04</div>
+          <span class="pc-label">传统运营模式</span>
+          <h3 class="pc-title">租户体验参差不齐</h3>
+          <p class="pc-desc">报修响应慢、进出不便、独居安全感不足。一次不好的体验可能直接决定租户是否续租，口碑在社交媒体时代传播速度远超想象。</p>
+        </div>
+        <div class="pain-card-overlay">
+          <div class="pc-number">04</div>
+          <span class="pc-label">Space Cube 解法</span>
+          <h3 class="pc-title">主动服务，让租户感受"被照顾"</h3>
+          <p class="pc-desc">一键服务直达、LBS 预判归家提前调节室温与灯光、语音求助联动无人配送应急物资。科技的温度，最终转化为续租率与口碑。</p>
+          <div class="pc-tags">
+            <span class="pc-tag">智能服务</span>
+            <span class="pc-tag">习惯学习</span>
+            <span class="pc-tag">安全联动</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pain Point 5 -->
+      <div class="pain-card">
+        <div class="pain-card-front">
+          <div class="pc-number">05</div>
+          <span class="pc-label">传统运营模式</span>
+          <h3 class="pc-title">运营数据一片盲区</h3>
+          <p class="pc-desc">运营靠经验判断，月底看总账。哪栋楼在亏钱、哪个环节在浪费、哪个管家效率最高，无从得知。决策只能是"拍脑袋"。</p>
+        </div>
+        <div class="pain-card-overlay">
+          <div class="pc-number">05</div>
+          <span class="pc-label">Space Cube 解法</span>
+          <h3 class="pc-title">数据看板，让决策有凭有据</h3>
+          <p class="pc-desc">云端数据看板实时呈现入住率、能耗、工单、投诉等核心运营指标。用数据驱动决策，而非拍脑袋。每一分钱花在哪里，都一目了然。</p>
+          <div class="pc-tags">
+            <span class="pc-tag">数据看板</span>
+            <span class="pc-tag">实时可视</span>
+            <span class="pc-tag">智能分析</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pain Point 6 -->
+      <div class="pain-card">
+        <div class="pain-card-front">
+          <div class="pc-number">06</div>
+          <span class="pc-label">传统运营模式</span>
+          <h3 class="pc-title">资产缺乏溢价空间</h3>
+          <p class="pc-desc">周边楼盘同质化严重，无科技卖点，租金天花板明显。在供大于求的市场里，没有差异化就意味着只能打价格战，资产增值空间有限。</p>
+        </div>
+        <div class="pain-card-overlay">
+          <div class="pc-number">06</div>
+          <span class="pc-label">Space Cube 解法</span>
+          <h3 class="pc-title">科技标签 + 数据资产，双重溢价</h3>
+          <p class="pc-desc">智慧社区标签 + 机器人服务场景，当下提升租金溢价能力。空间行为数据资产储备，未来对接具身智能产业，让楼宇成为数据产业链的一环。</p>
+          <div class="pc-tags">
+            <span class="pc-tag">科技溢价</span>
+            <span class="pc-tag">数据资产</span>
+            <span class="pc-tag">前瞻布局</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
 
   <!-- Three Value Cards -->
   <section class="section section-alt">
     <div class="container">
-      <div class="text-center" style="margin-bottom:40px;">
-        <span class="section-tag">三大核心价值</span>
-        <h2 class="section-title">用AI重塑楼宇运营<span class="cyan">竞争力</span></h2>
+      <div class="text-center" style="margin-bottom:48px;">
+        <span class="section-tag">核心价值</span>
+        <h2 class="section-title">用 AI 重塑楼宇运营<span class="cyan">竞争力</span></h2>
+        <p class="section-desc">
+          六大挑战逐一破解后，这些价值自然呈现
+        </p>
       </div>
       <div class="card-grid-3">
         <div class="card value-card">
           <div class="value-card-number">55<span style="font-size:22px;">%</span></div>
-          <div class="value-card-label">人力成本节约</div>
-          <div class="value-card-title">📉 降本</div>
-          <div class="value-card-desc">减少固定人力依赖，降低能耗。自动化执行日常运营任务，让人力专注于高价值工作。<br><br>人力成本节约 <strong style="color:var(--orange-dark);">55%</strong> | 能耗节约 <strong style="color:var(--orange-dark);">30%</strong></div>
+          <div class="value-card-label">人力成本优化空间</div>
+          <div class="value-card-title">降本</div>
+          <div class="value-card-desc">
+            自动化执行日常运营任务，AI 替代重复性岗位，让人力聚焦于高价值服务
+          </div>
+          <div class="value-card-note">*基于行业典型场景测算</div>
         </div>
         <div class="card value-card">
           <div class="value-card-number">60<span style="font-size:22px;">%</span></div>
-          <div class="value-card-label">故障响应时间缩短</div>
-          <div class="value-card-title">⚡ 增效</div>
-          <div class="value-card-desc">自动化运营，减少管理负担。设备预测维护，在故障发生前主动干预，降低损失。<br><br>设备预测维护 | 故障响应时间缩短 <strong style="color:var(--orange-dark);">60%</strong></div>
+          <div class="value-card-label">故障响应效率提升</div>
+          <div class="value-card-title">增效</div>
+          <div class="value-card-desc">
+            从被动报修到预测维护，设备异常主动预警，工单智能派发
+          </div>
+          <div class="value-card-note">*基于行业典型场景测算</div>
         </div>
         <div class="card value-card">
           <div class="value-card-number">15<span style="font-size:22px;">%</span></div>
-          <div class="value-card-label">租金溢价最高可达</div>
-          <div class="value-card-title">💰 增收</div>
-          <div class="value-card-desc">打造智慧社区卖点，提升租金和出租率。差异化竞争力，吸引年轻白领租客。<br><br>租金溢价可达 <strong style="color:var(--orange-dark);">8-15%</strong> | 出租率提升</div>
+          <div class="value-card-label">租金溢价空间可达</div>
+          <div class="value-card-title">增收</div>
+          <div class="value-card-desc">
+            智慧社区科技标签提升品牌溢价，差异化竞争力直接转化为租金回报
+          </div>
+          <div class="value-card-note">*基于行业典型场景测算</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Cost Comparison -->
-  <section class="section">
-    <div class="container">
-      <div class="text-center" style="margin-bottom:40px;">
-        <span class="section-tag">成本对比</span>
-        <h2 class="section-title">以<span class="cyan">100间公寓</span>规模为例</h2>
-        <p class="section-desc">传统模式 vs 智慧运营模式——数字说话</p>
-      </div>
+  <!-- Deployment Path -->
+  <section class="path-section">
+    <div class="path-section-header">
+      <span class="section-tag">落地路径</span>
+      <h2 class="section-title">从评估到上线，<span class="cyan">五步轻松接入</span></h2>
+      <p class="section-desc">
+        兼容主流楼宇设备，无需更换原有硬件，即插即用
+      </p>
+    </div>
 
-      <!-- Bar Chart Visual -->
-      <div class="cost-table-wrap" style="margin-bottom:32px;">
-        <div class="bar-chart-wrap">
-          <div style="display:flex;gap:24px;margin-bottom:24px;flex-wrap:wrap;align-items:center;">
-            <div style="display:flex;align-items:center;gap:8px;"><div style="width:14px;height:14px;border-radius:3px;background:rgba(150,150,150,0.4);"></div><span style="font-size:13px;color:#666;">传统模式</span></div>
-            <div style="display:flex;align-items:center;gap:8px;"><div style="width:14px;height:14px;border-radius:3px;background:var(--cyan-main);"></div><span style="font-size:13px;color:#666;">智慧模式</span></div>
-            <div style="display:flex;align-items:center;gap:8px;"><span style="font-size:13px;font-weight:600;color:var(--orange-dark);">%</span><span style="font-size:13px;color:#666;">节约率</span></div>
-          </div>
-          <div class="bar-item">
-            <div class="bar-label">用工成本</div>
-            <div class="bar-track">
-              <div class="bar-fill-old" style="width:100%;">699,600元/年</div>
-              <div class="bar-fill-new" style="width:45.5%;">318,000元/年</div>
-            </div>
-            <div class="bar-pct">节约55%</div>
-          </div>
-          <div class="bar-item">
-            <div class="bar-label">能耗成本</div>
-            <div class="bar-track">
-              <div class="bar-fill-old" style="width:100%;">120,000元/年</div>
-              <div class="bar-fill-new" style="width:70%;">84,000元/年</div>
-            </div>
-            <div class="bar-pct">节约30%</div>
-          </div>
-          <div class="bar-item">
-            <div class="bar-label">维修物料</div>
-            <div class="bar-track">
-              <div class="bar-fill-old" style="width:100%;">55,000元/年</div>
-              <div class="bar-fill-new" style="width:56.4%;">31,000元/年</div>
-            </div>
-            <div class="bar-pct">节约44%</div>
-          </div>
-          <div class="bar-item">
-            <div class="bar-label">管理运营</div>
-            <div class="bar-track">
-              <div class="bar-fill-old" style="width:100%;">85,000元/年</div>
-              <div class="bar-fill-new" style="width:51.5%;">43,800元/年</div>
-            </div>
-            <div class="bar-pct">节约48%</div>
-          </div>
-        </div>
+    <div class="path-timeline">
+      <div class="path-step">
+        <div class="path-step-circle">1</div>
+        <div class="path-step-title">需求评估</div>
+        <div class="path-step-time">约 1 周</div>
+        <div class="path-step-desc">现场勘察，了解楼宇现状与运营痛点，明确智能化目标</div>
       </div>
-
-      <div style="text-align:center;margin-top:16px;">
-        <span style="font-size:13px;color:#888;">* 数据基于典型100间公寓规模测算，实际效果因楼盘规模和管理方式有所差异</span>
+      <div class="path-step">
+        <div class="path-step-circle">2</div>
+        <div class="path-step-title">方案定制</div>
+        <div class="path-step-time">约 1 周</div>
+        <div class="path-step-desc">基于评估结果，定制 Space Cube 部署方案与实施计划</div>
       </div>
+      <div class="path-step">
+        <div class="path-step-circle">3</div>
+        <div class="path-step-title">硬件部署</div>
+        <div class="path-step-time">约 2 周</div>
+        <div class="path-step-desc">安装三大智联 Box，对接现有楼宇设备与系统</div>
+      </div>
+      <div class="path-step">
+        <div class="path-step-circle">4</div>
+        <div class="path-step-title">系统调试</div>
+        <div class="path-step-time">约 1 周</div>
+        <div class="path-step-desc">平台联调，数据打通，场景验证，确保稳定运行</div>
+      </div>
+      <div class="path-step">
+        <div class="path-step-circle">5</div>
+        <div class="path-step-title">正式上线</div>
+        <div class="path-step-time">持续运营</div>
+        <div class="path-step-desc">7×24h 运维保障，远程诊断，持续优化升级</div>
+      </div>
+    </div>
 
+    <div class="path-guarantee">
+      <div class="path-guarantee-item">兼容主流品牌楼宇设备</div>
+      <div class="path-guarantee-item">即插即用，不影响现有业务</div>
+      <div class="path-guarantee-item">7×24h 远程运维 + 定期巡检</div>
     </div>
   </section>
 
   <!-- Forward Value -->
-  <section class="section section-alt" id="ops-forward">
-    <div class="container">
-      <div style="max-width:800px;margin:0 auto;text-align:center;">
-        <span class="section-tag">前瞻价值</span>
-        <h2 class="section-title">您的楼宇不仅是资产，<br>更是<span class="cyan">未来人形机器人数据产业链的一环</span></h2>
-        <p class="section-desc">
-          部署Space Cube的楼宇，将积累宝贵的空间行为数据。这些数据是训练人形机器人的关键资源。未来，您不仅是楼宇业主，更是具身智能产业的数据伙伴。
-        </p>
-        <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:32px;">
-          <a class="btn btn-orange" onclick="showPage(&#39;about&#39;);setTimeout(()=&gt;scrollToSection(&#39;forward&#39;),300)">了解我们的技术远景 →</a>
-          <a class="btn btn-cyan" onclick="showPage(&#39;showroom&#39;)">立即预约方案演示 →</a>
+  <section class="forward-section" id="ops-forward">
+    <div class="container" style="position:relative;z-index:1;">
+      <span class="section-tag" style="background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.9);">前瞻价值</span>
+      <h2 class="section-title">
+        您的楼宇不仅是资产，<br>更是<span class="cyan">未来人形机器人数据产业链的一环</span>
+      </h2>
+      <p class="section-desc">
+        部署 Space Cube 的楼宇，将积累宝贵的空间行为数据。这些数据是训练人形机器人的关键资源。未来，您不仅是楼宇业主，更是具身智能产业的数据伙伴。
+      </p>
+      <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:32px;">
+        <a class="btn btn-orange" onclick="showPage(&#39;about&#39;);setTimeout(()=&gt;scrollToSection(&#39;forward&#39;),300)">了解技术远景 →</a>
+        <a class="btn btn-cyan" onclick="showPage(&#39;showroom&#39;)">立即预约方案演示 →</a>
         </div>
       </div>
-    </div>
   </section>
 
 
@@ -1803,41 +2299,69 @@
   <!-- Gallery + Info -->
   <section class="section section-alt">
     <div class="container">
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start;margin-bottom:48px;" class="showroom-info-wrap">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start;" class="showroom-info-wrap">
         <div>
           <span class="section-tag">展厅介绍</span>
           <h2 class="section-title" style="margin-bottom:20px;"><span class="cyan">Space Cube</span> 实景体验中心</h2>
           <div style="display:flex;flex-direction:column;gap:14px;margin-bottom:28px;">
+            <!-- 地址 -->
             <div style="display:flex;align-items:center;gap:14px;padding:14px 18px;background:white;border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,0.05);">
-              <span style="font-size:22px;">📍</span>
+              <span style="width:40px;height:40px;border-radius:10px;background:rgba(0,180,216,0.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--cyan-main)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </span>
               <div><div style="font-size:13px;color:#888;">展厅地址</div><div style="font-weight:600;color:var(--text-dark);">广州市 · 具体地址以预约确认为准</div></div>
             </div>
+            <!-- 面积 -->
             <div style="display:flex;align-items:center;gap:14px;padding:14px 18px;background:white;border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,0.05);">
-              <span style="font-size:22px;">📐</span>
+              <span style="width:40px;height:40px;border-radius:10px;background:rgba(0,180,216,0.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--cyan-main)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><path d="M3 9h18M9 21V9"/></svg>
+              </span>
               <div><div style="font-size:13px;color:#888;">展厅面积</div><div style="font-weight:600;color:var(--text-dark);">50-100㎡ 实景智慧房屋</div></div>
             </div>
+            <!-- 时间 -->
             <div style="display:flex;align-items:center;gap:14px;padding:14px 18px;background:white;border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,0.05);">
-              <span style="font-size:22px;">🕐</span>
+              <span style="width:40px;height:40px;border-radius:10px;background:rgba(0,180,216,0.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--cyan-main)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              </span>
               <div><div style="font-size:13px;color:#888;">开放时间</div><div style="font-weight:600;color:var(--text-dark);">每日 10:00–18:00</div></div>
             </div>
+            <!-- 展示内容 -->
             <div style="display:flex;align-items:center;gap:14px;padding:14px 18px;background:white;border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,0.05);">
-              <span style="font-size:22px;">✨</span>
+              <span style="width:40px;height:40px;border-radius:10px;background:rgba(0,180,216,0.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--cyan-main)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              </span>
               <div><div style="font-size:13px;color:#888;">展示内容</div><div style="font-weight:600;color:var(--text-dark);">三大盒子实景联动 + 智慧生活场景沉浸体验</div></div>
             </div>
           </div>
         </div>
         <div>
+          <!-- 图片画廊 -->
           <div class="showroom-gallery">
             <img src="./assets/images/content_img08.png" style="width:100%; object-fit:cover; border-radius:12px; display:block; height:400px;" alt="" />
-              
             <div class="showroom-gallery-side">
               <img src="./assets/images/content_img09.png" style="width:100%; object-fit:cover; border-radius:12px; display:block; height:192px;" alt="" />
-              
               <img src="./assets/images/content_img10.png" style="width:100%; object-fit:cover; border-radius:12px; display:block; height:192px;" alt="" />
-              
             </div>
           </div>
         </div>
+      </div>
+
+      <!-- 视频占位（全宽独立区域） -->
+      <div style="margin-top:48px;position:relative;border-radius:16px;overflow:hidden;background:linear-gradient(135deg,#0a1929,#0d2d45);height:400px;display:flex;align-items:center;justify-content:center;cursor:pointer;" onclick="alert('展厅视频即将上线')">
+        <img src="./assets/images/content_img08.png" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.2;" alt="" />
+        <div style="position:relative;z-index:1;text-align:center;">
+          <div style="width:80px;height:80px;border-radius:50%;background:rgba(255,255,255,0.12);backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;border:1px solid rgba(255,255,255,0.25);transition:transform 0.3s ease;">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="white" stroke="none"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+          <p style="color:white;font-size:20px;font-weight:700;">展厅实景视频</p>
+          <p style="color:rgba(255,255,255,0.6);font-size:14px;margin-top:6px;">即将上线，敬请期待</p>
+        </div>
+      </div>
+      <!-- 查看更多入口 -->
+      <div style="text-align:right;margin-top:16px;">
+        <a href="#" style="color:var(--cyan-main);font-size:14px;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:6px;" onclick="event.preventDefault();alert('更多实景照片即将上线')">
+          查看更多实景 <span style="font-size:18px;">→</span>
+        </a>
       </div>
     </div>
   </section>
@@ -1994,21 +2518,59 @@
 
   <!-- Policy Alignment -->
   <section class="section">
-    <div class="container" style="max-width:900px;margin:0 auto;">
+    <div class="container">
       <div class="text-center" style="margin-bottom:32px;">
         <span class="section-tag">政策契合</span>
         <h2 class="section-title">我们响应国家战略，<br>以<span class="cyan">AI空间智能体</span>重塑服务业</h2>
       </div>
-      <div class="policy-wrap">
-        <p style="font-size:15px;color:var(--text-dark);line-height:1.9;margin-bottom:16px;">
-          李强总理在2026年全国服务业大会上强调，要顺应人口结构变化、消费结构升级、产业结构转型三大趋势，提升服务业的<strong>数智化、标准化、融合化水平</strong>，壮大科技服务。
-        </p>
-        <div class="policy-quote">
-          "顺应人口结构变化、消费结构升级、产业结构转型三大趋势，提升服务业的数智化、标准化、融合化水平，壮大科技服务。"<br>
-          <span style="font-size:13px;color:#888;">——李强总理，2026年全国服务业大会</span>
+
+      <!-- 精简引用 -->
+      <div class="policy-quote-bar">
+        <div>
+          <div class="policy-quote-text">
+            "顺应人口结构变化、消费结构升级、产业结构转型三大趋势，提升服务业的数智化、标准化、融合化水平，壮大科技服务。"
+          </div>
+          <div class="policy-quote-source">——李强总理，2026年全国服务业大会</div>
         </div>
-        <p style="font-size:15px;color:var(--text-dark);line-height:1.9;margin-top:16px;">
-          Space Cube空间智能体三大盒子通过<strong>感知、交互、互通、互助</strong>，构建从室内到社区、从人到机器的全场景智能服务闭环，是"壮大科技服务"的具体产品化实践。
+        <div class="policy-quote-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--cyan-main)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 3c-3 0-7 1-7 8v8c0 1.25.756 2.017 2 2h4c1.25 0 2-.75 2-1.972V13c0-1.25-.75-2-2-2-1 0-1 0-1-1v-1c0-1 1-2 2-2s1-.008 1-1.031V4c0-1 0-1-1-1z" transform="scale(-1,1) translate(-24,0)"/><path d="M9 3c-3 0-7 1-7 8v8c0 1.25.757 2.017 2 2h4c1.25 0 2-.75 2-1.972V13c0-1.25-.75-2-2-2h-.75c0-2.25-.25-4 2.75-4V4c0-1 0-1-1-1z" transform="scale(-1,1) translate(-24,0)"/></svg>
+        </div>
+      </div>
+
+      <!-- 三大趋势卡片 -->
+      <div class="trend-grid">
+        <!-- 人口结构变化 -->
+        <div class="trend-card">
+          <div class="trend-icon-wrap">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--cyan-main)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <div class="trend-name">人口结构变化</div>
+          <div class="trend-desc">老龄化加速、独居青年增多，传统物业模式难以满足多元居住需求</div>
+        </div>
+
+        <!-- 消费结构升级 -->
+        <div class="trend-card">
+          <div class="trend-icon-wrap">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--cyan-main)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+          </div>
+          <div class="trend-name">消费结构升级</div>
+          <div class="trend-desc">从"有房住"到"住得好"，租户愿意为智能化、个性化服务支付溢价</div>
+        </div>
+
+        <!-- 产业结构转型 -->
+        <div class="trend-card">
+          <div class="trend-icon-wrap">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--cyan-main)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          </div>
+          <div class="trend-name">产业结构转型</div>
+          <div class="trend-desc">传统服务业向数智化升级，AI 成为重塑运营效率的核心驱动力</div>
+        </div>
+      </div>
+
+      <!-- 底部总结 -->
+      <div class="policy-summary">
+        <p>
+          Space Cube 空间智能体三大盒子通过 <strong>感知、交互、互通、互助</strong>，构建从室内到社区、从人到机器的全场景智能服务闭环，是"壮大科技服务"的具体产品化实践。
         </p>
       </div>
     </div>

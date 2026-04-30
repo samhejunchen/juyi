@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>方案A：叠加浮现效果 - 演示</title>
+<style>
+  :root {
+    --cyan-main: #00B4D8;
+    --cyan-dark: #0077B6;
+    --orange-main: #F4A261;
+    --text-dark: #2B2D42;
+    --bg-light: #F8F9FA;
+    --white: #ffffff;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    background: var(--bg-light);
+    color: var(--text-dark);
+    line-height: 1.7;
+    padding: 40px 24px;
+  }
+  .demo-header {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+  .demo-header h1 { font-size: 28px; margin-bottom: 8px; }
+  .demo-header p { color: #888; font-size: 14px; }
+  .demo-badge {
+    display: inline-block;
+    background: var(--cyan-main);
+    color: white;
+    padding: 4px 16px;
+    border-radius: 20px;
+    font-size: 13px;
+    margin-bottom: 16px;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  @media (max-width: 900px) {
+    .grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 600px) {
+    .grid { grid-template-columns: 1fr; }
+  }
+
+  /* ===== 方案A核心样式：叠加浮现 ===== */
+  .card {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    height: 280px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    cursor: pointer;
+  }
+  .card-front, .card-overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .card-front {
+    background: linear-gradient(135deg, #f0f0f3 0%, #e8e8ec 100%);
+    z-index: 1;
+  }
+  .card-overlay {
+    background: linear-gradient(135deg, var(--cyan-main) 0%, var(--cyan-dark) 100%);
+    color: white;
+    z-index: 2;
+    transform: translateY(100%);
+  }
+  .card:hover .card-overlay {
+    transform: translateY(0);
+  }
+  .card:hover .card-front {
+    transform: translateY(-20%);
+    opacity: 0.3;
+  }
+
+  .card-number {
+    font-size: 36px;
+    font-weight: 900;
+    opacity: 0.15;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .card-label {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+  }
+  .card-front .card-label { color: #888; }
+  .card-overlay .card-label { color: rgba(255,255,255,0.7); }
+  .card-title {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    line-height: 1.4;
+  }
+  .card-desc {
+    font-size: 13px;
+    line-height: 1.7;
+    opacity: 0.85;
+    flex: 1;
+  }
+  .card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: auto;
+    padding-top: 12px;
+  }
+  .tag {
+    font-size: 11px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.2);
+    border: 1px solid rgba(255,255,255,0.3);
+  }
+  .hint {
+    text-align: center;
+    margin-top: 32px;
+    color: #999;
+    font-size: 13px;
+  }
+</style>
+</head>
+<body>
+
+<div class="demo-header">
+  <div class="demo-badge">方案 A · 叠加浮现</div>
+  <h1>悬停时解法层从底部滑上，完全覆盖痛点</h1>
+  <p>鼠标移到卡片上，查看 Space Cube 如何破解每个运营挑战</p>
+</div>
+
+<div class="grid">
+
+  <!-- Card 1 -->
+  <div class="card">
+    <div class="card-front">
+      <div class="card-number">01</div>
+      <div class="card-label">传统运营模式</div>
+      <div class="card-title">人力成本持续攀升</div>
+      <div class="card-desc">保安、管家编制重，流动率高，单人管理半径有限。人力成本占运营支出大头，且随着最低工资标准上调，这块成本只会越来越高。</div>
+    </div>
+    <div class="card-overlay">
+      <div class="card-number">01</div>
+      <div class="card-label">Space Cube 解法</div>
+      <div class="card-title">AI 替代重复劳动，释放人力价值</div>
+      <div class="card-desc">社区智联 Box 实现 7×24h 自动安防监测，异常秒级预警并智能派单。AI 替代重复性巡检与值守，让有限的人力聚焦于高价值工作。</div>
+      <div class="card-tags">
+        <span class="tag">智能安防</span>
+        <span class="tag">自动派单</span>
+        <span class="tag">远程管理</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Card 2 -->
+  <div class="card">
+    <div class="card-front">
+      <div class="card-number">02</div>
+      <div class="card-label">传统运营模式</div>
+      <div class="card-title">能耗黑洞难以追查</div>
+      <div class="card-desc">空置房设备忘关、公区照明长明、异常用电月底才能发现。能耗账单是一笔"糊涂账"，钱花在哪里、哪里可以省，无从得知。</div>
+    </div>
+    <div class="card-overlay">
+      <div class="card-number">02</div>
+      <div class="card-label">Space Cube 解法</div>
+      <div class="card-title">实时分项计量，AI 智能调控</div>
+      <div class="card-desc">空间智联 Box 实现能耗实时分项计量，AI 自动识别异常用电并远程调控。每一度电都可追溯、可归因、可控制。</div>
+      <div class="card-tags">
+        <span class="tag">实时计量</span>
+        <span class="tag">AI 异常识别</span>
+        <span class="tag">自动调控</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Card 3 -->
+  <div class="card">
+    <div class="card-front">
+      <div class="card-number">03</div>
+      <div class="card-label">传统运营模式</div>
+      <div class="card-title">设备维修始终被动</div>
+      <div class="card-desc">故障靠租户报修，被动响应。小毛病拖成大修，维修成本不可控，租户抱怨不断，物业疲于"救火"。</div>
+    </div>
+    <div class="card-overlay">
+      <div class="card-number">03</div>
+      <div class="card-label">Space Cube 解法</div>
+      <div class="card-title">预测性维护，从"救火"变"防火"</div>
+      <div class="card-desc">传感器全天候监测设备运行状态，AI 在故障发生前主动预警并生成工单。把维修从"事后补救"变成"事前预防"。</div>
+      <div class="card-tags">
+        <span class="tag">预测性维护</span>
+        <span class="tag">主动预警</span>
+        <span class="tag">智能派单</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Card 4 -->
+  <div class="card">
+    <div class="card-front">
+      <div class="card-number">04</div>
+      <div class="card-label">传统运营模式</div>
+      <div class="card-title">租户体验参差不齐</div>
+      <div class="card-desc">报修响应慢、进出不便、独居安全感不足。一次不好的体验可能直接决定租户是否续租，口碑传播速度远超想象。</div>
+    </div>
+    <div class="card-overlay">
+      <div class="card-number">04</div>
+      <div class="card-label">Space Cube 解法</div>
+      <div class="card-title">主动服务，让租户感受"被照顾"</div>
+      <div class="card-desc">一键服务直达、LBS 预判归家提前调节室温与灯光、语音求助联动无人配送应急物资。科技的温度转化为续租率与口碑。</div>
+      <div class="card-tags">
+        <span class="tag">智能服务</span>
+        <span class="tag">习惯学习</span>
+        <span class="tag">安全联动</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Card 5 -->
+  <div class="card">
+    <div class="card-front">
+      <div class="card-number">05</div>
+      <div class="card-label">传统运营模式</div>
+      <div class="card-title">运营数据一片盲区</div>
+      <div class="card-desc">运营靠经验判断，月底看总账。哪栋楼在亏钱、哪个环节在浪费、哪个管家效率最高，无从得知。决策只能"拍脑袋"。</div>
+    </div>
+    <div class="card-overlay">
+      <div class="card-number">05</div>
+      <div class="card-label">Space Cube 解法</div>
+      <div class="card-title">数据看板，让决策有凭有据</div>
+      <div class="card-desc">云端数据看板实时呈现入住率、能耗、工单、投诉等核心运营指标。用数据驱动决策，每一分钱花在哪里都一目了然。</div>
+      <div class="card-tags">
+        <span class="tag">数据看板</span>
+        <span class="tag">实时可视</span>
+        <span class="tag">智能分析</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Card 6 -->
+  <div class="card">
+    <div class="card-front">
+      <div class="card-number">06</div>
+      <div class="card-label">传统运营模式</div>
+      <div class="card-title">资产缺乏溢价空间</div>
+      <div class="card-desc">周边楼盘同质化严重，无科技卖点，租金天花板明显。在供大于求的市场里，没有差异化就意味着只能打价格战。</div>
+    </div>
+    <div class="card-overlay">
+      <div class="card-number">06</div>
+      <div class="card-label">Space Cube 解法</div>
+      <div class="card-title">科技标签 + 数据资产，双重溢价</div>
+      <div class="card-desc">智慧社区标签 + 机器人服务场景，当下提升租金溢价能力。空间行为数据资产储备，未来对接具身智能产业。</div>
+      <div class="card-tags">
+        <span class="tag">科技溢价</span>
+        <span class="tag">数据资产</span>
+        <span class="tag">前瞻布局</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<p class="hint">💡 提示：将鼠标悬停在任意卡片上，即可查看 Space Cube 的解决方案</p>
+
+</body>
+</html>
